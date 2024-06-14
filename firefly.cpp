@@ -31,7 +31,17 @@ struct Size
 
 struct Angle
 {
-    int32_t value;
+    float a;
+};
+
+Angle Radians(float a)
+{
+    return Angle{a};
+};
+
+Angle Degrees(float a)
+{
+    return Angle{a * (float)3.14159265358979323846 / (float)180.0};
 };
 
 enum Color
@@ -122,10 +132,10 @@ void DrawTriangle(Point a, Point b, Point c, Style s)
 
 void DrawArc(Point p, int32_t d, Angle start, Angle sweep, Style s)
 {
-    drawArc(p.x, p.y, d, start.value, sweep.value, s.fill_color, s.stroke_color, s.stroke_width);
+    drawArc(p.x, p.y, d, start.a, sweep.a, s.fill_color, s.stroke_color, s.stroke_width);
 }
 
 void DrawSector(Point p, int32_t d, Angle start, Angle sweep, Style s)
 {
-    drawSector(p.x, p.y, d, start.value, sweep.value, s.fill_color, s.stroke_color, s.stroke_width);
+    drawSector(p.x, p.y, d, start.a, sweep.a, s.fill_color, s.stroke_color, s.stroke_width);
 }

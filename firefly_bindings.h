@@ -35,10 +35,10 @@ WASM_IMPORT("graphics", "draw_triangle")
 void drawTriangle(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3, int32_t fc, int32_t sc, int32_t sw);
 
 WASM_IMPORT("graphics", "draw_arc")
-void drawArc(int32_t x, int32_t y, int32_t d, int32_t ast, int32_t asw, int32_t fc, int32_t sc, int32_t sw);
+void drawArc(int32_t x, int32_t y, int32_t d, float ast, float asw, int32_t fc, int32_t sc, int32_t sw);
 
 WASM_IMPORT("graphics", "draw_sector")
-void drawSector(int32_t x, int32_t y, int32_t d, int32_t ast, int32_t asw, int32_t fc, int32_t sc, int32_t sw);
+void drawSector(int32_t x, int32_t y, int32_t d, float ast, float asw, int32_t fc, int32_t sc, int32_t sw);
 
 WASM_IMPORT("graphics", "draw_text")
 void drawText(uintptr_t textPtr, int32_t textLen, uintptr_t fontPtr, int32_t fontLen, int32_t x, int32_t y, int32_t color);
