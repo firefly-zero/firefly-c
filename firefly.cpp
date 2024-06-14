@@ -29,6 +29,11 @@ struct Size
     }
 };
 
+struct Angle
+{
+    int32_t value;
+};
+
 enum Color
 {
     NONE,
@@ -70,7 +75,57 @@ struct RGB
     int8_t b;
 };
 
+void ClearScreen(Color c)
+{
+    clearScreen(c);
+}
+
+void SetColor(Color c, RGB v)
+{
+    setColor(c, v.r, v.g, v.b);
+}
+
+void DrawPoint(Point p, Color c)
+{
+    drawPoint(p.x, p.y, c);
+}
+
 void DrawLine(Point a, Point b, LineStyle s)
 {
     drawLine(a.x, a.y, b.x, b.y, s.color, s.width);
+}
+
+void DrawRect(Point p, Size b, Style s)
+{
+    drawRect(p.x, p.y, b.width, b.height, s.fill_color, s.stroke_color, s.stroke_width);
+}
+
+void DrawRoundedRect(Point p, Size b, Size c, Style s)
+{
+    drawRoundedRect(p.x, p.y, b.width, b.height, c.width, c.height, s.fill_color, s.stroke_color, s.stroke_width);
+}
+
+void DrawCircle(Point p, int32_t d, Style s)
+{
+    drawCircle(p.x, p.y, d, s.fill_color, s.stroke_color, s.stroke_width);
+}
+
+void DrawEllipse(Point p, Size b, Style s)
+{
+    drawEllipse(p.x, p.y, b.width, b.height, s.fill_color, s.stroke_color, s.stroke_width);
+}
+
+void DrawTriangle(Point a, Point b, Point c, Style s)
+{
+    drawTriangle(a.x, a.y, b.x, b.y, c.x, c.y, s.fill_color, s.stroke_color, s.stroke_width);
+}
+
+void DrawArc(Point p, int32_t d, Angle start, Angle sweep, Style s)
+{
+    drawArc(p.x, p.y, d, start.value, sweep.value, s.fill_color, s.stroke_color, s.stroke_width);
+}
+
+void DrawSector(Point p, int32_t d, Angle start, Angle sweep, Style s)
+{
+    drawSector(p.x, p.y, d, start.value, sweep.value, s.fill_color, s.stroke_color, s.stroke_width);
 }
