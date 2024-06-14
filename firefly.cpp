@@ -9,24 +9,12 @@ struct Point
 {
     int32_t x;
     int32_t y;
-
-    Point(int32_t x_, int32_t y_)
-    {
-        x = x_;
-        y = y_;
-    }
 };
 
 struct Size
 {
     int32_t width;
     int32_t height;
-
-    Size(int32_t width_, int32_t height_)
-    {
-        width = width_;
-        height = height_;
-    }
 };
 
 struct Angle
