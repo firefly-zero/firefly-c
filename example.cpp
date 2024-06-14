@@ -4,13 +4,7 @@
 WASM_EXPORT("boot")
 void boot()
 {
-    Point a;
-    a.x = 10;
-    a.y = 10;
-    Point b;
-    b.x = 20;
-    b.y = 20;
     LineStyle s;
     s.color = BLACK;
-    DrawLine(a, b, s);
+    DrawLine(Point(10, 10), Point(20, 20), s);
 }
