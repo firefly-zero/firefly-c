@@ -1,4 +1,9 @@
-#include "firefly.h"
+#include "firefly_bindings.h"
+#include <stdint.h>
+
+#define WASM_EXPORT(NAME) __attribute__((export_name(NAME)))
+#define WIDTH 240
+#define HEIGHT 160
 
 struct Point
 {
