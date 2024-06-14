@@ -2,8 +2,8 @@
 
 #include <stdint.h>
 
-#define WASM_EXPORT(NAME) __attribute__((export_name(#NAME)))
-#define WASM_IMPORT(MOD, NAME) __attribute__((import_module(MOD), import_name(#NAME)))
+#define WASM_EXPORT(NAME) __attribute__((export_name(NAME)))
+#define WASM_IMPORT(MOD, NAME) __attribute__((import_module(MOD), import_name(NAME)))
 
 #define WIDTH 240
 #define HEIGHT 160
