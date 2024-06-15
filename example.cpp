@@ -1,4 +1,4 @@
-#include "firefly.cpp"
+#include "firefly.c"
 
 WASM_EXPORT("boot")
 void boot()

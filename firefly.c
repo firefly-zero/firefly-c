@@ -10,26 +10,31 @@ struct Point
     int32_t x;
     int32_t y;
 };
+typedef struct Point Point;
 
 struct Size
 {
     int32_t width;
     int32_t height;
 };
+typedef struct Size Size;
 
 struct Angle
 {
     float a;
 };
+typedef struct Angle Angle;
 
 Angle Radians(float a)
 {
-    return Angle{a};
+    struct Angle r = {a};
+    return r;
 };
 
 Angle Degrees(float a)
 {
-    return Angle{a * (float)3.14159265358979323846 / (float)180.0};
+    struct Angle r = {a * (float)3.14159265358979323846 / (float)180.0};
+    return r;
 };
 
 enum Color
@@ -52,6 +57,7 @@ enum Color
     GRAY,
     DARK_GRAY,
 };
+typedef Color Color;
 
 struct Style
 {
@@ -59,12 +65,14 @@ struct Style
     Color stroke_color;
     int32_t stroke_width;
 };
+typedef Style Style;
 
 struct LineStyle
 {
     Color color;
     int32_t width;
 };
+typedef LineStyle LineStyle;
 
 struct RGB
 {
@@ -72,6 +80,7 @@ struct RGB
     int8_t g;
     int8_t b;
 };
+typedef RGB RGB;
 
 void ClearScreen(Color c)
 {
