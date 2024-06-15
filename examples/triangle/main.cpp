@@ -4,8 +4,6 @@ BOOT void boot()
 {
     ClearScreen(WHITE);
     DrawTriangle(
-        Point{30, 10},
-        Point{20, 30},
-        Point{40, 30},
-        Style{fill_color : BLACK, stroke_color : RED, stroke_width : 2});
+        {60, 10}, {40, 40}, {80, 40},
+        {fill_color : LIGHT_GRAY, stroke_color : DARK_BLUE, stroke_width : 1});
 }
