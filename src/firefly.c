@@ -109,65 +109,65 @@ typedef RGB RGB;
 /// @brief Fill the whole frame with the given color.
 void ClearScreen(Color c)
 {
-    clearScreen(c);
+    ffb_clearScreen(c);
 }
 
 /// @brief Set a color value in the palette.
 void SetColor(Color c, RGB v)
 {
-    setColor(c, v.r, v.g, v.b);
+    ffb_setColor(c, v.r, v.g, v.b);
 }
 
 /// @brief Set a single point (1 pixel is scaling is 1) on the frame.
 void DrawPoint(Point p, Color c)
 {
-    drawPoint(p.x, p.y, c);
+    ffb_drawPoint(p.x, p.y, c);
 }
 
 /// @brief Draw a straight line from point a to point b.
 void DrawLine(Point a, Point b, LineStyle s)
 {
-    drawLine(a.x, a.y, b.x, b.y, s.color, s.width);
+    ffb_drawLine(a.x, a.y, b.x, b.y, s.color, s.width);
 }
 
 /// @brief Draw a rectangle filling the given bounding box.
 void DrawRect(Point p, Size b, Style s)
 {
-    drawRect(p.x, p.y, b.width, b.height, s.fill_color, s.stroke_color, s.stroke_width);
+    ffb_drawRect(p.x, p.y, b.width, b.height, s.fill_color, s.stroke_color, s.stroke_width);
 }
 
 /// @brief Draw a rectangle with rounded corners.
 void DrawRoundedRect(Point p, Size b, Size c, Style s)
 {
-    drawRoundedRect(p.x, p.y, b.width, b.height, c.width, c.height, s.fill_color, s.stroke_color, s.stroke_width);
+    ffb_drawRoundedRect(p.x, p.y, b.width, b.height, c.width, c.height, s.fill_color, s.stroke_color, s.stroke_width);
 }
 
 /// @brief Draw a circle with the given diameter.
 void DrawCircle(Point p, int32_t d, Style s)
 {
-    drawCircle(p.x, p.y, d, s.fill_color, s.stroke_color, s.stroke_width);
+    ffb_drawCircle(p.x, p.y, d, s.fill_color, s.stroke_color, s.stroke_width);
 }
 
 /// @brief Draw an ellipse (oval).
 void DrawEllipse(Point p, Size b, Style s)
 {
-    drawEllipse(p.x, p.y, b.width, b.height, s.fill_color, s.stroke_color, s.stroke_width);
+    ffb_drawEllipse(p.x, p.y, b.width, b.height, s.fill_color, s.stroke_color, s.stroke_width);
 }
 
 /// @brief Draw a triangle.
 void DrawTriangle(Point a, Point b, Point c, Style s)
 {
-    drawTriangle(a.x, a.y, b.x, b.y, c.x, c.y, s.fill_color, s.stroke_color, s.stroke_width);
+    ffb_drawTriangle(a.x, a.y, b.x, b.y, c.x, c.y, s.fill_color, s.stroke_color, s.stroke_width);
 }
 
 /// @brief Draw an arc.
 void DrawArc(Point p, int32_t d, Angle start, Angle sweep, Style s)
 {
-    drawArc(p.x, p.y, d, start.a, sweep.a, s.fill_color, s.stroke_color, s.stroke_width);
+    ffb_drawArc(p.x, p.y, d, start.a, sweep.a, s.fill_color, s.stroke_color, s.stroke_width);
 }
 
 /// @brief Draw a sector.
 void DrawSector(Point p, int32_t d, Angle start, Angle sweep, Style s)
 {
-    drawSector(p.x, p.y, d, start.a, sweep.a, s.fill_color, s.stroke_color, s.stroke_width);
+    ffb_drawSector(p.x, p.y, d, start.a, sweep.a, s.fill_color, s.stroke_color, s.stroke_width);
 }
