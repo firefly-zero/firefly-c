@@ -1,5 +1,8 @@
 #include "firefly_bindings.h"
 #include <stdint.h>
+#include <stdbool.h>
+
+// -- CALLBACKS -- //
 
 /// @brief Mark a "boot" callback function.
 #define BOOT __attribute__((export_name("boot")))
@@ -12,6 +15,8 @@
 #define WIDTH 240
 /// @brief Screen height.
 #define HEIGHT 160
+
+// -- GRAPHICS -- //
 
 /// @brief A point on the screen.
 ///
@@ -170,4 +175,61 @@ void DrawArc(Point p, int32_t d, Angle start, Angle sweep, Style s)
 void DrawSector(Point p, int32_t d, Angle start, Angle sweep, Style s)
 {
     ffb_drawSector(p.x, p.y, d, start.a, sweep.a, s.fill_color, s.stroke_color, s.stroke_width);
+}
+
+// -- INPUT -- //
+
+struct Pad
+{
+    int16_t x;
+    int16_t y;
+    bool touched;
+};
+typedef struct Pad Pad;
+
+struct Buttons
+{
+    bool a;
+    bool b;
+    bool x;
+    bool y;
+    bool menu;
+};
+typedef struct Buttons Buttons;
+
+struct Player
+{
+    uint8_t index;
+};
+typedef struct Player Player;
+
+Pad ReadPad(Player player)
+{
+    int32_t raw = ffb_readPad(player.index);
+    Pad pad;
+    if (raw == 0xffff)
+    {
+        pad.x = 0;
+        pad.y = 0;
+        pad.touched = false;
+    }
+    else
+    {
+        pad.x = raw >> 16;
+        pad.y = raw;
+        pad.touched = true;
+    }
+    return pad;
+}
+
+Buttons ReadButtons(Player player)
+{
+    int32_t raw = ffb_readButtons(player.index);
+    Buttons buttons;
+    buttons.a = (raw & 0b1) != 0;
+    buttons.b = (raw & 0b10) != 0;
+    buttons.x = (raw & 0b100) != 0;
+    buttons.y = (raw & 0b1000) != 0;
+    buttons.menu = (raw & 0b10000) != 0;
+    return buttons;
 }

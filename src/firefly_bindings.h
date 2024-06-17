@@ -7,6 +7,8 @@
 
 #define WASM_IMPORT(MOD, NAME) __attribute__((import_module(MOD), import_name(NAME)))
 
+// -- GRAPHICS -- //
+
 WASM_IMPORT("graphics", "clear_screen")
 void ffb_clearScreen(int32_t c);
 
@@ -48,6 +50,8 @@ void ffb_drawImage(uintptr_t ptr, int32_t len, int32_t x, int32_t y);
 
 WASM_IMPORT("graphics", "draw_sub_image")
 void ffb_drawSubImage(uintptr_t ptr, uintptr_t len, int32_t x, int32_t y, int32_t subX, int32_t subY, int32_t subWidth, int32_t subHeight);
+
+// -- INPUT -- //
 
 WASM_IMPORT("input", "read_pad")
 int32_t ffb_readPad(int32_t player);
