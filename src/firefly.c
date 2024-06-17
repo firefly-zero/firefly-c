@@ -1,6 +1,7 @@
 #include "firefly_bindings.h"
 #include <stdint.h>
 #include <stdbool.h>
+#include <string.h>
 
 // -- CALLBACKS -- //
 
@@ -232,4 +233,19 @@ Buttons ReadButtons(Player player)
     buttons.y = (raw & 0b1000) != 0;
     buttons.menu = (raw & 0b10000) != 0;
     return buttons;
+}
+
+// -- FS -- //
+
+int GetROMFileSize(char *path)
+{
+    size_t len = strlen(path);
+    return ffb_getRomFileSize((int)path, len);
+}
+
+int LoadROMFile(char *path, char *buf)
+{
+    size_t len = strlen(path);
+    size_t bufLen = sizeof(buf);
+    return ffb_loadRomFile((int)path, len, (int)buf, bufLen);
 }
