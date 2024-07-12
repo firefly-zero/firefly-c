@@ -1,0 +1,20 @@
+version: "3"
+
+vars:
+  OUTPUT: "main.wasm"
+
+tasks:
+  default:
+    - rm -f "{{.OUTPUT}}"
+    - >
+      /opt/wasi-sdk/bin/clang++
+      --sysroot="/opt/wasi-sdk/share/wasi-sysroot" 
+      -o "{{.OUTPUT}}"
+      -Wl,-zstack-size=14752,--no-entry
+      -mexec-model=reactor
+      -Wl,--initial-memory=65536,--max-memory=65536,--stack-first
+      -Wl,--strip-all,--gc-sections,--lto-O3
+      -Oz
+      main.cpp
+    - firefly_cli build
+    - firefly_cli export
