@@ -3,12 +3,15 @@ version: "3"
 vars:
   OUTPUT: "main.wasm"
 
+env:
+  WASI_SDK_PATH: /opt/wasi-sdk
+
 tasks:
   default:
     - rm -f "{{.OUTPUT}}"
     - >
-      /opt/wasi-sdk/bin/clang++
-      --sysroot="/opt/wasi-sdk/share/wasi-sysroot" 
+      "${WASI_SDK_PATH}/bin/clang++"
+      --sysroot="${WASI_SDK_PATH}/share/wasi-sysroot"
       -o "{{.OUTPUT}}"
       -Wl,-zstack-size=14752,--no-entry
       -mexec-model=reactor
