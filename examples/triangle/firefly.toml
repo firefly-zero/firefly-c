@@ -2,3 +2,6 @@ author_id = "demo"
 app_id = "cpp-triangle"
 author_name = "Demo"
 app_name = "Triangle Demo (C++)"
+
+[files]
+_bin = { path = "main.wasm", copy = true }
