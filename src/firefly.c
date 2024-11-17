@@ -72,30 +72,6 @@ void DrawSector(Point p, int32_t d, Angle start, Angle sweep, Style s)
 
 // -- INPUT -- //
 
-struct Pad
-{
-    int16_t x;
-    int16_t y;
-    bool touched;
-};
-typedef struct Pad Pad;
-
-struct Buttons
-{
-    bool a;
-    bool b;
-    bool x;
-    bool y;
-    bool menu;
-};
-typedef struct Buttons Buttons;
-
-struct Player
-{
-    uint8_t index;
-};
-typedef struct Player Player;
-
 Pad ReadPad(Player player)
 {
     int32_t raw = ffb_readPad(player.index);

@@ -100,3 +100,29 @@ typedef struct RGB RGB;
 
 void ClearScreen(Color c);
 void DrawTriangle(Point a, Point b, Point c, Style s);
+
+// -- INPUT -- //
+
+struct Pad
+{
+    int16_t x;
+    int16_t y;
+    bool touched;
+};
+typedef struct Pad Pad;
+
+struct Buttons
+{
+    bool a;
+    bool b;
+    bool x;
+    bool y;
+    bool menu;
+};
+typedef struct Buttons Buttons;
+
+struct Player
+{
+    uint8_t index;
+};
+typedef struct Player Player;
