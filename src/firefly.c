@@ -70,6 +70,16 @@ void DrawSector(Point p, int32_t d, Angle start, Angle sweep, Style s)
     ffb_drawSector(p.x, p.y, d, start.a, sweep.a, s.fill_color, s.stroke_color, s.stroke_width);
 }
 
+void DrawImage(Image i, Point p)
+{
+    ffb_drawImage((int)i.head, i.size, p.x, p.y);
+}
+
+void DrawSubImage(SubImage s, Point p)
+{
+    ffb_drawSubImage((int)s.image.head, s.image.size, p.x, p.y, s.point.x, s.point.y, s.size.width, s.size.height);
+}
+
 // -- INPUT -- //
 
 Pad ReadPad(Player player)
@@ -111,9 +121,12 @@ int GetFileSize(char *path)
     return ffb_getFileSize((int)path, pathLen);
 }
 
-int LoadFile(char *path, char *buf)
+File LoadFile(char *path, Buffer buf)
 {
     size_t pathLen = strlen(path);
-    size_t bufLen = sizeof(buf);
-    return ffb_loadFile((int)path, pathLen, (int)buf, bufLen);
+    int32_t size = ffb_loadFile((int)path, pathLen, (int)buf.head, buf.size);
+    File file;
+    file.size = size;
+    file.head = buf.head;
+    return file;
 }
