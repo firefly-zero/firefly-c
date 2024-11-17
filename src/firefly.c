@@ -105,15 +105,15 @@ Buttons ReadButtons(Player player)
 
 // -- FS -- //
 
-int GetROMFileSize(char *path)
+int GetFileSize(char *path)
 {
-    size_t len = strlen(path);
-    return ffb_getRomFileSize((int)path, len);
+    size_t pathLen = strlen(path);
+    return ffb_getFileSize((int)path, pathLen);
 }
 
-int LoadROMFile(char *path, char *buf)
+int LoadFile(char *path, char *buf)
 {
-    size_t len = strlen(path);
+    size_t pathLen = strlen(path);
     size_t bufLen = sizeof(buf);
-    return ffb_loadRomFile((int)path, len, (int)buf, bufLen);
+    return ffb_loadFile((int)path, pathLen, (int)buf, bufLen);
 }

@@ -99,7 +99,16 @@ struct RGB
 typedef struct RGB RGB;
 
 void ClearScreen(Color c);
+void SetColor(Color c, RGB v);
+void DrawPoint(Point p, Color c);
+void DrawLine(Point a, Point b, LineStyle s);
+void DrawRect(Point p, Size b, Style s);
+void DrawRoundedRect(Point p, Size b, Size c, Style s);
+void DrawCircle(Point p, int32_t d, Style s);
+void DrawEllipse(Point p, Size b, Style s);
 void DrawTriangle(Point a, Point b, Point c, Style s);
+void DrawArc(Point p, int32_t d, Angle start, Angle sweep, Style s);
+void DrawSector(Point p, int32_t d, Angle start, Angle sweep, Style s);
 
 // -- INPUT -- //
 
@@ -126,3 +135,11 @@ struct Player
     uint8_t index;
 };
 typedef struct Player Player;
+
+Pad ReadPad(Player player);
+Buttons ReadButtons(Player player);
+
+// -- FS -- //
+
+int GetFileSize(char *path);
+int LoadFile(char *path, char *buf);
