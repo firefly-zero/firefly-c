@@ -77,7 +77,7 @@ WASM_IMPORT("fs", "dump_file")
 uintptr_t ffb_dumpFile(uintptr_t pathPtr, uintptr_t pathLen, uintptr_t bufPtr, uintptr_t bufLen);
 
 WASM_IMPORT("fs", "remove_file")
-uintptr_t ffb_removeFile(uintptr_t pathPtr, uintptr_t pathLen);
+void ffb_removeFile(uintptr_t pathPtr, uintptr_t pathLen);
 
 // -- NET -- //
 

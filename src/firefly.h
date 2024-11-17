@@ -163,5 +163,10 @@ void DrawSubImage(SubImage s, Point p);
 Pad ReadPad(Player player);
 Buttons ReadButtons(Player player);
 
-int GetFileSize(char *path);
+size_t GetFileSize(char *path);
 File LoadFile(char *path, Buffer buf);
+void DumpFile(char *path, File f);
+void RemoveFile(char *path);
+
+void LogDebug(char *msg);
+void LogError(char *msg);

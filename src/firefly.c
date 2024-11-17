@@ -115,7 +115,7 @@ Buttons ReadButtons(Player player)
 
 // -- FS -- //
 
-int GetFileSize(char *path)
+size_t GetFileSize(char *path)
 {
     size_t pathLen = strlen(path);
     return ffb_getFileSize((int)path, pathLen);
@@ -129,4 +129,30 @@ File LoadFile(char *path, Buffer buf)
     file.size = size;
     file.head = buf.head;
     return file;
+}
+
+void DumpFile(char *path, File f)
+{
+    size_t pathLen = strlen(path);
+    ffb_dumpFile((int)path, pathLen, (int)f.head, f.size);
+}
+
+void RemoveFile(char *path)
+{
+    size_t pathLen = strlen(path);
+    ffb_removeFile((int)path, pathLen);
+}
+
+// -- MISC -- //
+
+void LogDebug(char *msg)
+{
+    size_t msgLen = strlen(msg);
+    ffb_logDebug((int)msg, msgLen);
+}
+
+void LogError(char *msg)
+{
+    size_t msgLen = strlen(msg);
+    ffb_logError((int)msg, msgLen);
 }
