@@ -51,6 +51,12 @@ void ffb_drawImage(uintptr_t ptr, int32_t len, int32_t x, int32_t y);
 WASM_IMPORT("graphics", "draw_sub_image")
 void ffb_drawSubImage(uintptr_t ptr, uintptr_t len, int32_t x, int32_t y, int32_t subX, int32_t subY, int32_t subWidth, int32_t subHeight);
 
+WASM_IMPORT("graphics", "set_canvas")
+void ffb_setCanvas(uintptr_t ptr, uintptr_t len);
+
+WASM_IMPORT("graphics", "unset_canvas")
+void ffb_unsetCanvas();
+
 // -- INPUT -- //
 
 WASM_IMPORT("input", "read_pad")
@@ -61,37 +67,53 @@ int32_t ffb_readButtons(int32_t player);
 
 // -- FS -- //
 
-WASM_IMPORT("fs", "get_rom_file_size")
-int32_t ffb_getRomFileSize(int32_t pathPtr, int32_t pathLen);
-
-WASM_IMPORT("fs", "load_rom_file")
-int32_t ffb_loadRomFile(int32_t pathPtr, int32_t pathLen, int32_t bufPtr, int32_t bufLen);
-
 WASM_IMPORT("fs", "get_file_size")
-int32_t ffb_getFileSize(int32_t pathPtr, int32_t pathLen);
+int32_t ffb_getFileSize(uintptr_t pathPtr, uintptr_t pathLen);
 
 WASM_IMPORT("fs", "load_file")
-int32_t ffb_loadFile(int32_t pathPtr, int32_t pathLen, int32_t bufPtr, int32_t bufLen);
+uintptr_t ffb_loadFile(uintptr_t pathPtr, uintptr_t pathLen, uintptr_t bufPtr, uintptr_t bufLen);
 
 WASM_IMPORT("fs", "dump_file")
-int32_t ffb_dumpFile(int32_t pathPtr, int32_t pathLen, int32_t bufPtr, int32_t bufLen);
+uintptr_t ffb_dumpFile(uintptr_t pathPtr, uintptr_t pathLen, uintptr_t bufPtr, uintptr_t bufLen);
 
 WASM_IMPORT("fs", "remove_file")
-int32_t ffb_removeFile(int32_t pathPtr, int32_t pathLen);
+uintptr_t ffb_removeFile(uintptr_t pathPtr, uintptr_t pathLen);
+
+// -- NET -- //
+
+WASM_IMPORT("misc", "get_me")
+int32_t ffb_getMe();
+
+WASM_IMPORT("misc", "get_peers")
+int32_t ffb_getPeers();
+
+// -- STATS -- //
+
+WASM_IMPORT("misc", "add_progress")
+uintptr_t ffb_addProgress(uintptr_t peerID, uintptr_t badgeID, int32_t val);
+
+WASM_IMPORT("misc", "add_score")
+int32_t ffb_addScore(uintptr_t peerID, uintptr_t badgeID, int32_t val);
 
 // -- MISC -- //
 
 WASM_IMPORT("misc", "log_debug")
-void ffb_logDebug(int32_t ptr, int32_t len);
+void ffb_logDebug(uintptr_t ptr, uintptr_t len);
 
 WASM_IMPORT("misc", "log_error")
-void ffb_logError(int32_t ptr, int32_t len);
+void ffb_logError(uintptr_t ptr, uintptr_t len);
 
 WASM_IMPORT("misc", "set_seed")
-void ffb_setSeed(int32_t seed);
+void ffb_setSeed(uintptr_t seed);
 
 WASM_IMPORT("misc", "get_random")
-int32_t ffb_getRandom();
+uintptr_t ffb_getRandom();
+
+WASM_IMPORT("misc", "get_name")
+uintptr_t ffb_getName(uintptr_t ptr, uintptr_t len);
+
+WASM_IMPORT("misc", "restart")
+void ffb_restart();
 
 WASM_IMPORT("misc", "quit")
 void ffb_quit();
