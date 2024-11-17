@@ -156,3 +156,32 @@ void LogError(char *msg)
     size_t msgLen = strlen(msg);
     ffb_logError((int)msg, msgLen);
 }
+
+void SetSeed(uintptr_t seed)
+{
+    ffb_setSeed(seed);
+}
+
+uintptr_t GetRandom()
+{
+    return ffb_getRandom();
+}
+
+Buffer GetName(Buffer buf)
+{
+    int32_t size = ffb_getName((int)buf.head, buf.size);
+    File name;
+    name.size = size;
+    name.head = buf.head;
+    return name;
+}
+
+void Restart()
+{
+    ffb_restart();
+}
+
+void Quite()
+{
+    ffb_quit();
+}
