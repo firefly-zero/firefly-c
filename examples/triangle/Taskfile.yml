@@ -2,12 +2,13 @@ version: "3"
 
 vars:
   OUTPUT: "main.wasm"
-
 env:
   WASI_SDK_PATH: /opt/wasi-sdk
 
 tasks:
-  default:
+  build:
+    - test $WASI_SDK_PATH
+    - test -d $WASI_SDK_PATH
     - rm -f "{{.OUTPUT}}"
     - >
       "${WASI_SDK_PATH}/bin/clang++"
@@ -21,3 +22,5 @@ tasks:
       main.cpp
     - firefly_cli build
     - firefly_cli export
+  default:
+    - task: build
