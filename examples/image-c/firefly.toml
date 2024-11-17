@@ -1,0 +1,7 @@
+author_id = "demo"
+app_id = "c-image"
+author_name = "Demo"
+app_name = "Image Demo (C)"
+
+[files]
+img = { path = "image.png" }
