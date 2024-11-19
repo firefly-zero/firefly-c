@@ -144,6 +144,15 @@ struct Player
 };
 typedef struct Player Player;
 
+// -- NET -- //
+
+struct Peers
+{
+    uint32_t online;
+};
+typedef struct Peers Peers;
+typedef int32_t Peer;
+
 // -- FUNCTIONS -- //
 
 void ClearScreen(Color c);
@@ -167,6 +176,10 @@ size_t GetFileSize(char *path);
 File LoadFile(char *path, Buffer buf);
 void DumpFile(char *path, File f);
 void RemoveFile(char *path);
+
+Peer GetMe();
+Peers GetPeers();
+bool IsOnline(Peers peers, Peer peer);
 
 void LogDebug(char *msg);
 void LogError(char *msg);

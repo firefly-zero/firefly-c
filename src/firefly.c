@@ -4,6 +4,22 @@
 #include <stdbool.h>
 #include <string.h>
 
+/// @brief An angle in radians where τ(2π) is the full circle.
+Angle Radians(float a)
+{
+    struct Angle r = {a};
+    return r;
+};
+
+/// @brief An angle in degrees where 360.0 is the full circle.
+Angle Degrees(float a)
+{
+    struct Angle r = {a * (float)3.14159265358979323846 / (float)180.0};
+    return r;
+};
+
+// -- GRAPHICS -- //
+
 /// @brief Fill the whole frame with the given color.
 void ClearScreen(Color c)
 {
@@ -141,6 +157,25 @@ void RemoveFile(char *path)
 {
     size_t pathLen = strlen(path);
     ffb_removeFile((int)path, pathLen);
+}
+
+// -- NET -- //
+
+Peer GetMe()
+{
+    return ffb_getMe();
+}
+
+Peers GetPeers()
+{
+    Peers peers;
+    peers.online = ffb_getPeers();
+    return peers;
+}
+
+bool IsOnline(Peers peers, Peer peer)
+{
+    return peers.online >> peer & 1 != 0;
 }
 
 // -- MISC -- //
