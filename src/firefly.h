@@ -153,6 +153,14 @@ struct Peers
 typedef struct Peers Peers;
 typedef int32_t Peer;
 
+// -- AUDIO -- //
+
+struct AudioNode
+{
+    uint32_t id;
+};
+typedef struct AudioNode AudioNode;
+
 // -- FUNCTIONS -- //
 
 void ClearScreen(Color c);
@@ -188,3 +196,31 @@ uintptr_t GetRandom();
 Buffer GetName(Buffer buf);
 void Restart();
 void Quit();
+
+AudioNode AddSine(AudioNode parent, double freq, double phase);
+AudioNode AddSquare(AudioNode parent, double freq, double phase);
+AudioNode AddSawtooth(AudioNode parent, double freq, double phase);
+AudioNode AddTriangle(AudioNode parent, double freq, double phase);
+AudioNode AddNoise(AudioNode parent, int32_t seed);
+AudioNode AddEmpty(AudioNode parent);
+AudioNode AddZero(AudioNode parent);
+AudioNode AddFile(AudioNode parent, char *path);
+AudioNode AddMix(AudioNode parent);
+AudioNode AddAllForOne(AudioNode parent);
+AudioNode AddGain(AudioNode parent, double lvl);
+AudioNode AddLoop(AudioNode parent);
+AudioNode AddConcat(AudioNode parent);
+AudioNode AddPan(AudioNode parent, double lvl);
+AudioNode AddMute(AudioNode parent);
+AudioNode AddPause(AudioNode parent);
+AudioNode AddTrackPosition(AudioNode parent);
+AudioNode AddLowPass(AudioNode parent, double freq, double q);
+AudioNode AddHighPass(AudioNode parent, double freq, double q);
+AudioNode AddTakeLeft(AudioNode parent);
+AudioNode AddTakeRight(AudioNode parent);
+AudioNode AddSwap(AudioNode parent);
+AudioNode AddClip(AudioNode parent, double low, double high);
+
+void AudioReset(AudioNode node);
+void AudioResetAll(AudioNode node);
+void AudioClear(AudioNode node);

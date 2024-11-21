@@ -220,3 +220,182 @@ void Quit()
 {
     ffb_quit();
 }
+
+// -- AUDIO -- //
+
+AudioNode AddSine(AudioNode parent, double freq, double phase)
+{
+    AudioNode node;
+    node.id = ffba_addSine(parent.id, freq, phase);
+    return node;
+}
+
+AudioNode AddSquare(AudioNode parent, double freq, double phase)
+{
+    AudioNode node;
+    node.id = ffba_addSquare(parent.id, freq, phase);
+    return node;
+}
+
+AudioNode AddSawtooth(AudioNode parent, double freq, double phase)
+{
+    AudioNode node;
+    node.id = ffba_addSawtooth(parent.id, freq, phase);
+    return node;
+}
+
+AudioNode AddTriangle(AudioNode parent, double freq, double phase)
+{
+    AudioNode node;
+    node.id = ffba_addTriangle(parent.id, freq, phase);
+    return node;
+}
+
+AudioNode AddNoise(AudioNode parent, int32_t seed)
+{
+    AudioNode node;
+    node.id = ffba_addNoise(parent.id, seed);
+    return node;
+}
+
+AudioNode AddEmpty(AudioNode parent)
+{
+    AudioNode node;
+    node.id = ffba_addEmpty(parent.id);
+    return node;
+}
+
+AudioNode AddZero(AudioNode parent)
+{
+    AudioNode node;
+    node.id = ffba_addZero(parent.id);
+    return node;
+}
+
+AudioNode AddFile(AudioNode parent, char *path)
+{
+    size_t pathLen = strlen(path);
+    AudioNode node;
+    node.id = ffba_addFile(parent.id, (int)path, pathLen);
+    return node;
+}
+
+AudioNode AddMix(AudioNode parent)
+{
+    AudioNode node;
+    node.id = ffba_addMix(parent.id);
+    return node;
+}
+
+AudioNode AddAllForOne(AudioNode parent)
+{
+    AudioNode node;
+    node.id = ffba_addAllForOne(parent.id);
+    return node;
+}
+
+AudioNode AddGain(AudioNode parent, double lvl)
+{
+    AudioNode node;
+    node.id = ffba_addGain(parent.id, lvl);
+    return node;
+}
+
+AudioNode AddLoop(AudioNode parent)
+{
+    AudioNode node;
+    node.id = ffba_addLoop(parent.id);
+    return node;
+}
+
+AudioNode AddConcat(AudioNode parent)
+{
+    AudioNode node;
+    node.id = ffba_addConcat(parent.id);
+    return node;
+}
+
+AudioNode AddPan(AudioNode parent, double lvl)
+{
+    AudioNode node;
+    node.id = ffba_addPan(parent.id, lvl);
+    return node;
+}
+
+AudioNode AddMute(AudioNode parent)
+{
+    AudioNode node;
+    node.id = ffba_addMute(parent.id);
+    return node;
+}
+
+AudioNode AddPause(AudioNode parent)
+{
+    AudioNode node;
+    node.id = ffba_addPause(parent.id);
+    return node;
+}
+
+AudioNode AddTrackPosition(AudioNode parent)
+{
+    AudioNode node;
+    node.id = ffba_addTrackPosition(parent.id);
+    return node;
+}
+
+AudioNode AddLowPass(AudioNode parent, double freq, double q)
+{
+    AudioNode node;
+    node.id = ffba_addLowPass(parent.id, freq, q);
+    return node;
+}
+
+AudioNode AddHighPass(AudioNode parent, double freq, double q)
+{
+    AudioNode node;
+    node.id = ffba_addHighPass(parent.id, freq, q);
+    return node;
+}
+
+AudioNode AddTakeLeft(AudioNode parent)
+{
+    AudioNode node;
+    node.id = ffba_addTakeLeft(parent.id);
+    return node;
+}
+
+AudioNode AddTakeRight(AudioNode parent)
+{
+    AudioNode node;
+    node.id = ffba_addTakeRight(parent.id);
+    return node;
+}
+
+AudioNode AddSwap(AudioNode parent)
+{
+    AudioNode node;
+    node.id = ffba_addSwap(parent.id);
+    return node;
+}
+
+AudioNode AddClip(AudioNode parent, double low, double high)
+{
+    AudioNode node;
+    node.id = ffba_addClip(parent.id, low, high);
+    return node;
+}
+
+void AudioReset(AudioNode node)
+{
+    ffba_reset(node.id);
+}
+
+void AudioResetAll(AudioNode node)
+{
+    ffba_resetAll(node.id);
+}
+
+void AudioClear(AudioNode node)
+{
+    ffba_clear(node.id);
+}
