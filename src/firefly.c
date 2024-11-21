@@ -175,7 +175,7 @@ Peers GetPeers()
 
 bool IsOnline(Peers peers, Peer peer)
 {
-    return peers.online >> peer & 1 != 0;
+    return ((peers.online >> peer) & 1) != 0;
 }
 
 // -- MISC -- //
@@ -216,7 +216,7 @@ void Restart()
     ffb_restart();
 }
 
-void Quite()
+void Quit()
 {
     ffb_quit();
 }

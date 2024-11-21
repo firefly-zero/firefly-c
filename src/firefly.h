@@ -183,3 +183,8 @@ bool IsOnline(Peers peers, Peer peer);
 
 void LogDebug(char *msg);
 void LogError(char *msg);
+void SetSeed(uintptr_t seed);
+uintptr_t GetRandom();
+Buffer GetName(Buffer buf);
+void Restart();
+void Quit();

@@ -117,3 +117,98 @@ void ffb_restart();
 
 WASM_IMPORT("misc", "quit")
 void ffb_quit();
+
+// -- AUDIO -- //
+
+// sources (aka generators)
+
+WASM_IMPORT("audio", "add_sine")
+uintptr_t ffba_addSine(uintptr_t parentID, double freq, double phase);
+
+WASM_IMPORT("audio", "add_square")
+uintptr_t ffba_addSquare(uintptr_t parentID, double freq, double phase);
+
+WASM_IMPORT("audio", "add_sawtooth")
+uintptr_t ffba_addSawtooth(uintptr_t parentID, double freq, double phase);
+
+WASM_IMPORT("audio", "add_triangle")
+uintptr_t ffba_addTriangle(uintptr_t parentID, double freq, double phase);
+
+WASM_IMPORT("audio", "add_noise")
+uintptr_t ffba_addNoise(uintptr_t parentID, int32_t seed);
+
+WASM_IMPORT("audio", "add_empty")
+uintptr_t ffba_addEmpty(uintptr_t parentID);
+
+WASM_IMPORT("audio", "add_zero")
+uintptr_t ffba_addZero(uintptr_t parentID);
+
+WASM_IMPORT("audio", "add_file")
+uintptr_t ffba_addFile(uintptr_t parentID, uintptr_t ptr, uintptr_t len);
+
+// nodes
+
+WASM_IMPORT("audio", "add_mix")
+uintptr_t ffba_addMix(uintptr_t parentID);
+
+WASM_IMPORT("audio", "add_all_for_one")
+uintptr_t ffba_addAllForOne(uintptr_t parentID);
+
+WASM_IMPORT("audio", "add_gain")
+uintptr_t ffba_addGain(uintptr_t parentID, double lvl);
+
+WASM_IMPORT("audio", "add_loop")
+uintptr_t ffba_addLoop(uintptr_t parentID);
+
+WASM_IMPORT("audio", "add_concat")
+uintptr_t ffba_addConcat(uintptr_t parentID);
+
+WASM_IMPORT("audio", "add_pan")
+uintptr_t ffba_addPan(uintptr_t parentID, double lvl);
+
+WASM_IMPORT("audio", "add_mute")
+uintptr_t ffba_addMute(uintptr_t parentID);
+
+WASM_IMPORT("audio", "add_pause")
+uintptr_t ffba_addPause(uintptr_t parentID);
+
+WASM_IMPORT("audio", "add_track_position")
+uintptr_t ffba_addTrackPosition(uintptr_t parentID);
+
+WASM_IMPORT("audio", "add_low_pass")
+uintptr_t ffba_addLowPass(uintptr_t parentID, double freq, double q);
+
+WASM_IMPORT("audio", "add_high_pass")
+uintptr_t ffba_addHighPass(uintptr_t parentID, double freq, double q);
+
+WASM_IMPORT("audio", "add_take_left")
+uintptr_t ffba_addTakeLeft(uintptr_t parentID);
+
+WASM_IMPORT("audio", "add_take_right")
+uintptr_t ffba_addTakeRight(uintptr_t parentID);
+
+WASM_IMPORT("audio", "add_swap")
+uintptr_t ffba_addSwap(uintptr_t parentID);
+
+WASM_IMPORT("audio", "add_clip")
+uintptr_t ffba_addClip(uintptr_t parentID, double low, double high);
+
+// modulators
+
+WASM_IMPORT("audio", "mod_linear")
+void ffba_modLinear(uintptr_t nodeID, uintptr_t param, double aStart, double aEnd, uintptr_t startAt, uintptr_t endAt);
+
+WASM_IMPORT("audio", "mod_hold")
+void ffba_modHold(uintptr_t nodeID, uintptr_t param, double v1, double v2, uintptr_t time);
+
+WASM_IMPORT("audio", "mod_sine")
+void ffba_modSine(uintptr_t nodeID, uintptr_t param, double freq, double low, double high);
+
+WASM_IMPORT("audio", "reset")
+void ffba_reset(uintptr_t nodeID);
+
+WASM_IMPORT("audio", "reset_all")
+void ffba_resetAll(uintptr_t nodeID);
+
+WASM_IMPORT("audio", "clear")
+void ffba_clear(uintptr_t nodeID);
