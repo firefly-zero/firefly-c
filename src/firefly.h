@@ -7,8 +7,10 @@
 
 /// @brief Mark a "boot" callback function.
 #define BOOT __attribute__((export_name("boot")))
+
 /// @brief Mark an "update" callback function.
 #define UPDATE __attribute__((export_name("update")))
+
 /// @brief Mark a "render_line" callback function.
 #define RENDER_LINE __attribute__((export_name("render_line")))
 
@@ -100,6 +102,9 @@ typedef struct RGB RGB;
 
 // -- FS -- //
 
+/// @brief A dynamically sized array.
+/// @details SImilar to vector in C++.
+/// The size of the array pointed to by `head` must be at least `size` bytes long.
 struct Buffer
 {
     size_t size;
@@ -110,16 +115,21 @@ typedef struct Buffer File;
 typedef struct Buffer Image;
 typedef struct Buffer Canvas;
 
+/// @brief A subregion of an [Image].
 struct SubImage
 {
+    /// @brief The original image.
     Image image;
+    /// @brief The coordinates of the upper-left corner of the subregion.
     Point point;
+    /// @brief The width and height of the subregion.
     Size size;
 };
 typedef struct SubImage SubImage;
 
 // -- INPUT -- //
 
+/// @brief Get if the touchpad is pressed, and if so, where.
 struct Pad
 {
     int16_t x;
@@ -128,6 +138,8 @@ struct Pad
 };
 typedef struct Pad Pad;
 
+/// @brief Get which buttons are pressed.
+/// @details The menu button is almost always handled by the runtime.
 struct Buttons
 {
     bool a;
@@ -138,23 +150,24 @@ struct Buttons
 };
 typedef struct Buttons Buttons;
 
-struct Player
-{
-    uint8_t index;
-};
-typedef struct Player Player;
-
 // -- NET -- //
 
+/// @brief The bitmap of peers currently online.
 struct Peers
 {
     uint32_t online;
 };
 typedef struct Peers Peers;
+
+/// @brief An ID of a connected device in the multiplayer.
 typedef int32_t Peer;
+
+/// @brief A peer ID representing all peers at once.
+const Peer COMBINED = 0xFF;
 
 // -- AUDIO -- //
 
+/// @brief A node in the audio tree.
 struct AudioNode
 {
     uint32_t id;
@@ -162,6 +175,9 @@ struct AudioNode
 typedef struct AudioNode AudioNode;
 
 // -- FUNCTIONS -- //
+
+Angle Radians(float a);
+Angle Degrees(float a);
 
 void ClearScreen(Color c);
 void SetColor(Color c, RGB v);
@@ -177,8 +193,8 @@ void DrawSector(Point p, int32_t d, Angle start, Angle sweep, Style s);
 void DrawImage(Image img, Point p);
 void DrawSubImage(SubImage s, Point p);
 
-Pad ReadPad(Player player);
-Buttons ReadButtons(Player player);
+Pad ReadPad(Peer peer);
+Buttons ReadButtons(Peer peer);
 
 size_t GetFileSize(char *path);
 File LoadFile(char *path, Buffer buf);
