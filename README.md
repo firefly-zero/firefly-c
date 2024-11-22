@@ -9,7 +9,15 @@ Missed API: canvas, audio modulation, state.
 
 ## Installation
 
-...
+```bash
+mkdir -p vendor/firefly
+wget -O vendor/firefly/firefly.c \
+    https://github.com/firefly-zero/firefly-c/raw/refs/heads/main/src/firefly.c
+wget -O vendor/firefly/firefly.h \
+    https://github.com/firefly-zero/firefly-c/raw/refs/heads/main/src/firefly.h
+wget -O vendor/firefly/firefly_bindings.h \
+    https://github.com/firefly-zero/firefly-c/raw/refs/heads/main/src/firefly_bindings.h
+```
 
 ## License
 
