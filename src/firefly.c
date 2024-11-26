@@ -1,3 +1,6 @@
+/// @file
+/// @brief The function definitions for Firefly Zero C SDK.
+
 #include "firefly.h"
 #include "firefly_bindings.h"
 #include <stdint.h>

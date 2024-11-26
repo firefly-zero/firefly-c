@@ -1,3 +1,6 @@
+/// @file
+/// @brief The type definitions and function declarations for Firefly Zero C SDK.
+
 #pragma once
 
 #include "firefly_bindings.h"
