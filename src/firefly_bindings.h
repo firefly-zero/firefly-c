@@ -196,10 +196,10 @@ uint32_t _ffba_add_clip(uint32_t parentID, float low, float high);
 // modulators
 
 WASM_IMPORT("audio", "mod_linear")
-void _ffba_mod_linear(uint32_t nodeID, uint32_t param, float aStart, float aEnd, uint32_t startAt, uint32_t endAt);
+void _ffba_mod_linear(uint32_t nodeID, uint32_t param, float x_start, float x_end, uint32_t start_at, uint32_t end_at);
 
 WASM_IMPORT("audio", "mod_hold")
-void _ffba_mod_hold(uint32_t nodeID, uint32_t param, float v1, float v2, uint32_t time);
+void _ffba_mod_hold(uint32_t nodeID, uint32_t param, float before, float after, uint32_t time);
 
 WASM_IMPORT("audio", "mod_sine")
 void _ffba_mod_sine(uint32_t nodeID, uint32_t param, float freq, float low, float high);

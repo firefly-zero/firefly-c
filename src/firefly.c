@@ -167,7 +167,7 @@ Buttons read_buttons(Peer peer)
 // -- FS -- //
 
 /// @brief Get size (in bytes) of the given file.
-/// @details Useful for dynamically allocating [Buffer]
+/// @details Useful for dynamically allocating Buffer
 /// of the right size for [load_file].
 size_t get_file_size(char *path)
 {
@@ -176,8 +176,8 @@ size_t get_file_size(char *path)
 }
 
 /// @brief Read file from the given path into the given buffer.
-/// @details The resulting [File] uses the same memory as the given
-/// [Buffer] but has its size adjusted to the file size.
+/// @details The resulting File uses the same memory as the given
+/// Buffer but has its size adjusted to the file size.
 File load_file(char *path, Buffer buf)
 {
     size_t pathLen = strlen(path);
@@ -201,7 +201,7 @@ void dump_file(char *path, File f)
     _ffb_dump_file((int)path, pathLen, (int)f.head, f.size);
 }
 
-/// @brief Delete a file created using [dump_file].
+/// @brief Delete a file created using dump_file().
 /// @details Files in ROM cannot be deleted.
 void remove_file(char *path)
 {
@@ -211,7 +211,7 @@ void remove_file(char *path)
 
 // -- NET -- //
 
-/// @brief Get the [Peer] corresponding to the current device.
+/// @brief Get the Peer corresponding to the current device.
 Peer get_me()
 {
     return _ffb_get_me();
@@ -225,9 +225,9 @@ Peers get_peers()
     return peers;
 }
 
-/// @brief Check if the given [Peer] is online.
-/// @details Accepts the bitmap of [Peers] returned by [get_peers].
-/// The [Peer] can be obtained by a for loop from 0 to 31.
+/// @brief Check if the given Peer is online.
+/// @details Accepts the bitmap of Peers returned by get_peers().
+/// The Peer can be obtained by a for loop from 0 to 31.
 bool is_online(Peers peers, Peer peer)
 {
     return ((peers.online >> peer) & 1) != 0;
@@ -261,7 +261,7 @@ uintptr_t get_random()
     return _ffb_get_random();
 }
 
-/// @brief Write device name into the given [Buffer].
+/// @brief Write device name into the given Buffer.
 /// @details The buffer size must be at least 16 bytes.
 Buffer get_name(Buffer buf)
 {
@@ -286,7 +286,7 @@ void quit()
 
 // -- AUDIO -- //
 
-/// @brief Add sine [AudioNode] as a child node for the given node.
+/// @brief Add sine AudioNode as a child node for the given node.
 AudioNode add_sine(AudioNode parent, float freq, float phase)
 {
     AudioNode node;
@@ -294,7 +294,7 @@ AudioNode add_sine(AudioNode parent, float freq, float phase)
     return node;
 }
 
-/// @brief Add square [AudioNode] as a child node for the given node.
+/// @brief Add square AudioNode as a child node for the given node.
 AudioNode add_square(AudioNode parent, float freq, float phase)
 {
     AudioNode node;
@@ -302,7 +302,7 @@ AudioNode add_square(AudioNode parent, float freq, float phase)
     return node;
 }
 
-/// @brief Add sawtooth [AudioNode] as a child node for the given node.
+/// @brief Add sawtooth AudioNode as a child node for the given node.
 AudioNode add_sawtooth(AudioNode parent, float freq, float phase)
 {
     AudioNode node;
@@ -310,7 +310,7 @@ AudioNode add_sawtooth(AudioNode parent, float freq, float phase)
     return node;
 }
 
-/// @brief Add triangle [AudioNode] as a child node for the given node.
+/// @brief Add triangle AudioNode as a child node for the given node.
 AudioNode add_triangle(AudioNode parent, float freq, float phase)
 {
     AudioNode node;
@@ -318,7 +318,7 @@ AudioNode add_triangle(AudioNode parent, float freq, float phase)
     return node;
 }
 
-/// @brief Add noise [AudioNode] as a child node for the given node.
+/// @brief Add noise AudioNode as a child node for the given node.
 AudioNode add_noise(AudioNode parent, int32_t seed)
 {
     AudioNode node;
@@ -326,7 +326,7 @@ AudioNode add_noise(AudioNode parent, int32_t seed)
     return node;
 }
 
-/// @brief Add empty [AudioNode] as a child node for the given node.
+/// @brief Add empty AudioNode as a child node for the given node.
 AudioNode add_empty(AudioNode parent)
 {
     AudioNode node;
@@ -334,7 +334,7 @@ AudioNode add_empty(AudioNode parent)
     return node;
 }
 
-/// @brief Add zero [AudioNode] as a child node for the given node.
+/// @brief Add zero AudioNode as a child node for the given node.
 AudioNode add_zero(AudioNode parent)
 {
     AudioNode node;
@@ -342,7 +342,7 @@ AudioNode add_zero(AudioNode parent)
     return node;
 }
 
-/// @brief Add file [AudioNode] as a child node for the given node.
+/// @brief Add file AudioNode as a child node for the given node.
 AudioNode add_file(AudioNode parent, char *path)
 {
     size_t pathLen = strlen(path);
@@ -351,7 +351,7 @@ AudioNode add_file(AudioNode parent, char *path)
     return node;
 }
 
-/// @brief Add mix [AudioNode] as a child node for the given node.
+/// @brief Add mix AudioNode as a child node for the given node.
 AudioNode add_mix(AudioNode parent)
 {
     AudioNode node;
@@ -359,7 +359,7 @@ AudioNode add_mix(AudioNode parent)
     return node;
 }
 
-/// @brief Add allforone [AudioNode] as a child node for the given node.
+/// @brief Add allforone AudioNode as a child node for the given node.
 AudioNode add_all_for_one(AudioNode parent)
 {
     AudioNode node;
@@ -367,7 +367,7 @@ AudioNode add_all_for_one(AudioNode parent)
     return node;
 }
 
-/// @brief Add gain [AudioNode] as a child node for the given node.
+/// @brief Add gain AudioNode as a child node for the given node.
 AudioNode add_gain(AudioNode parent, float lvl)
 {
     AudioNode node;
@@ -375,7 +375,7 @@ AudioNode add_gain(AudioNode parent, float lvl)
     return node;
 }
 
-/// @brief Add loop [AudioNode] as a child node for the given node.
+/// @brief Add loop AudioNode as a child node for the given node.
 AudioNode add_loop(AudioNode parent)
 {
     AudioNode node;
@@ -383,7 +383,7 @@ AudioNode add_loop(AudioNode parent)
     return node;
 }
 
-/// @brief Add concat [AudioNode] as a child node for the given node.
+/// @brief Add concat AudioNode as a child node for the given node.
 AudioNode add_concat(AudioNode parent)
 {
     AudioNode node;
@@ -391,7 +391,7 @@ AudioNode add_concat(AudioNode parent)
     return node;
 }
 
-/// @brief Add pan [AudioNode] as a child node for the given node.
+/// @brief Add pan AudioNode as a child node for the given node.
 AudioNode add_pan(AudioNode parent, float lvl)
 {
     AudioNode node;
@@ -399,7 +399,7 @@ AudioNode add_pan(AudioNode parent, float lvl)
     return node;
 }
 
-/// @brief Add mute [AudioNode] as a child node for the given node.
+/// @brief Add mute AudioNode as a child node for the given node.
 AudioNode add_mute(AudioNode parent)
 {
     AudioNode node;
@@ -407,7 +407,7 @@ AudioNode add_mute(AudioNode parent)
     return node;
 }
 
-/// @brief Add pause [AudioNode] as a child node for the given node.
+/// @brief Add pause AudioNode as a child node for the given node.
 AudioNode add_pause(AudioNode parent)
 {
     AudioNode node;
@@ -415,7 +415,7 @@ AudioNode add_pause(AudioNode parent)
     return node;
 }
 
-/// @brief Add trackposition [AudioNode] as a child node for the given node.
+/// @brief Add trackposition AudioNode as a child node for the given node.
 AudioNode add_track_position(AudioNode parent)
 {
     AudioNode node;
@@ -423,7 +423,7 @@ AudioNode add_track_position(AudioNode parent)
     return node;
 }
 
-/// @brief Add lowpass [AudioNode] as a child node for the given node.
+/// @brief Add lowpass AudioNode as a child node for the given node.
 AudioNode add_low_pass(AudioNode parent, float freq, float q)
 {
     AudioNode node;
@@ -431,7 +431,7 @@ AudioNode add_low_pass(AudioNode parent, float freq, float q)
     return node;
 }
 
-/// @brief Add highpass [AudioNode] as a child node for the given node.
+/// @brief Add highpass AudioNode as a child node for the given node.
 AudioNode add_high_pass(AudioNode parent, float freq, float q)
 {
     AudioNode node;
@@ -439,7 +439,7 @@ AudioNode add_high_pass(AudioNode parent, float freq, float q)
     return node;
 }
 
-/// @brief Add takeleft [AudioNode] as a child node for the given node.
+/// @brief Add takeleft AudioNode as a child node for the given node.
 AudioNode add_take_left(AudioNode parent)
 {
     AudioNode node;
@@ -447,7 +447,7 @@ AudioNode add_take_left(AudioNode parent)
     return node;
 }
 
-/// @brief Add takeright [AudioNode] as a child node for the given node.
+/// @brief Add takeright AudioNode as a child node for the given node.
 AudioNode add_take_right(AudioNode parent)
 {
     AudioNode node;
@@ -455,7 +455,7 @@ AudioNode add_take_right(AudioNode parent)
     return node;
 }
 
-/// @brief Add swap [AudioNode] as a child node for the given node.
+/// @brief Add swap AudioNode as a child node for the given node.
 AudioNode add_swap(AudioNode parent)
 {
     AudioNode node;
@@ -463,7 +463,7 @@ AudioNode add_swap(AudioNode parent)
     return node;
 }
 
-/// @brief Add clip [AudioNode] as a child node for the given node.
+/// @brief Add clip AudioNode as a child node for the given node.
 AudioNode add_clip(AudioNode parent, float low, float high)
 {
     AudioNode node;
@@ -471,20 +471,38 @@ AudioNode add_clip(AudioNode parent, float low, float high)
     return node;
 }
 
-/// @brief Reset the state of the given [AudioNode].
+/// @brief Reset the state of the given AudioNode.
 void audio_reset(AudioNode node)
 {
     _ffba_reset(node.id);
 }
 
-/// @brief Reset the state of the given [AudioNode] and all its child nodes.
+/// @brief Reset the state of the given AudioNode and all its child nodes.
 void audio_reset_all(AudioNode node)
 {
     _ffba_reset_all(node.id);
 }
 
-/// @brief Remove all child nodes from the given [AudioNode].
+/// @brief Remove all child nodes from the given AudioNode.
 void audio_clear(AudioNode node)
 {
     _ffba_clear(node.id);
+}
+
+/// @brief Modulate an audio node's parameter using a LinearModulator.
+void mod_linear(AudioNode node, ModParam param, LinearModulator mod)
+{
+    _ffba_mod_linear(node.id, param, mod.start, mod.end, mod.start_at.samples, mod.end_at.samples);
+}
+
+/// @brief Modulate an audio node's parameter using a HoldModulator.
+void mod_hold(AudioNode node, ModParam param, HoldModulator mod)
+{
+    _ffba_mod_hold(node.id, param, mod.before, mod.after, mod.time.samples);
+}
+
+/// @brief Modulate an audio node's parameter using a SineModulator.
+void mod_sine(AudioNode node, ModParam param, SineModulator mod)
+{
+    _ffba_mod_sine(node.id, param, mod.freq, mod.low, mod.high);
 }

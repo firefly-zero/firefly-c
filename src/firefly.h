@@ -230,8 +230,8 @@ struct LinearModulator
 {
     float start;
     float end;
-    AudioTime startAt;
-    AudioTime endAt;
+    AudioTime start_at;
+    AudioTime end_at;
 };
 typedef struct LinearModulator LinearModulator;
 
@@ -240,7 +240,7 @@ typedef struct LinearModulator LinearModulator;
 /// @details It looks like this: `⎽│⎺` or `⎺│⎽`.
 ///
 /// The value before `time` is `before` and the value after `time` is `after`.
-/// Equivalent to [LinearModulator] with `startAt` being equal to `endAt`.
+/// Equivalent to [LinearModulator] with `start_at` being equal to `end_at`.
 struct HoldModulator
 {
     float before;
@@ -329,6 +329,10 @@ AudioNode add_take_left(AudioNode parent);
 AudioNode add_take_right(AudioNode parent);
 AudioNode add_swap(AudioNode parent);
 AudioNode add_clip(AudioNode parent, float low, float high);
+
+void mod_linear(AudioNode node, ModParam param, LinearModulator mod);
+void mod_hold(AudioNode node, ModParam param, HoldModulator mod);
+void mod_sine(AudioNode node, ModParam param, SineModulator mod);
 
 void audio_reset(AudioNode node);
 void audio_reset_all(AudioNode node);
