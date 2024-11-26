@@ -159,10 +159,10 @@ Buttons read_buttons(Peer peer)
 {
     int32_t raw = _ffb_read_buttons(peer);
     Buttons buttons;
-    buttons.a = (raw & 0b1) != 0;
-    buttons.b = (raw & 0b10) != 0;
-    buttons.x = (raw & 0b100) != 0;
-    buttons.y = (raw & 0b1000) != 0;
+    buttons.south = (raw & 0b1) != 0;
+    buttons.east = (raw & 0b10) != 0;
+    buttons.west = (raw & 0b100) != 0;
+    buttons.north = (raw & 0b1000) != 0;
     buttons.menu = (raw & 0b10000) != 0;
     return buttons;
 }

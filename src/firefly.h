@@ -174,14 +174,22 @@ struct Pad
 };
 typedef struct Pad Pad;
 
-/// @brief Get which buttons are pressed.
-/// @details The menu button is almost always handled by the runtime.
+/// @brief State of the buttons. True is pressed, false is released.
 struct Buttons
 {
-    bool a;
-    bool b;
-    bool x;
-    bool y;
+    /// @brief The bottom button, like A on the X-Box controller.
+    /// @details Typically used for confirmation, main action, jump, etc.
+    bool south;
+    /// @brief The right button, like B on the X-Box controller.
+    /// @details Typically used for cancellation, going to previous screen, etc.
+    bool east;
+    /// @brief The left button, like X on the X-Box controller.
+    /// @details Typically used for attack.
+    bool west;
+    /// @brief The top button, like Y on the X-Box controller.
+    /// @details Typically used for a secondary action, like charged attack.
+    bool north;
+    /// @brief The menu button, almost always handled by the runtime.
     bool menu;
 };
 typedef struct Buttons Buttons;
