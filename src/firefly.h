@@ -167,12 +167,99 @@ const Peer COMBINED = 0xFF;
 
 // -- AUDIO -- //
 
+const int32_t SAMPLE_RATE = 44100;
+
 /// @brief A node in the audio tree.
 struct AudioNode
 {
     uint32_t id;
 };
 typedef struct AudioNode AudioNode;
+
+/// @brief A parameter of an audio node that can be modulated.
+enum ModParam
+{
+    /// @brief Modulate oscillation frequency for a Sine wave node.
+    Sine = 0,
+    /// @brief Modulate oscillation frequency for a Square wave node.
+    Square = 0,
+    /// @brief Modulate oscillation frequency for a Sawtooth wave node.
+    Sawtooth = 0,
+    /// @brief Modulate oscillation frequency for a Triangle wave node.
+    Triangle = 0,
+    /// @brief Modulate the gain level for a Gain node.
+    Gain = 0,
+    /// @brief Modulate the pan value for a Pan node.
+    /// @details The value is from 0. to 1.: 0. is only left, 1. is only right.
+    Pan = 0,
+    /// @brief Modulate the muted state for a Mute node.
+    /// @details Below 0.5 is muted, above is unmuted.
+    Mute = 0,
+    /// @brief Modulate the paused state for a Pause node.
+    /// @details Below 0.5 is paused, above is playing.
+    Pause = 0,
+    /// @brief Modulate the cut-off frequency of a LowPass node.
+    LowPass = 0,
+    /// @brief Modulate the cut-off frequency of a HighPass node.
+    HighPass = 0,
+    /// @brief Modulate the low cut amplitude of a Clip node and adjust the high amplitude to keep the gap.
+    /// @details In other words, the difference between low and high cut points will stay the same.
+    ClipBoth = 0,
+    /// @brief Modulate the low cut amplitude of a Clip node.
+    ClipLow = 1,
+    /// @brief Modulate the high cut amplitude of a Clip node.
+    ClipHigh = 2,
+};
+typedef enum ModParam ModParam;
+
+/// @brief A time or duration used by audio modulators.
+struct AudioTime
+{
+    uint32_t samples;
+};
+typedef struct AudioTime AudioTime;
+
+/// @brief Linear (ramp up or down) envelope.
+///
+/// @details It looks like this: `⎽╱⎺` or `⎺╲⎽`.
+///
+/// The value before `start_at` is `start`, the value after `end_at` is `end`,
+/// and the value between `start_at` and `end_at` changes linearly from `start` to `end`.
+struct LinearModulator
+{
+    float start;
+    float end;
+    AudioTime startAt;
+    AudioTime endAt;
+};
+typedef struct LinearModulator LinearModulator;
+
+/// @brief Hold envelope.
+///
+/// @details It looks like this: `⎽│⎺` or `⎺│⎽`.
+///
+/// The value before `time` is `before` and the value after `time` is `after`.
+/// Equivalent to [LinearModulator] with `startAt` being equal to `endAt`.
+struct HoldModulator
+{
+    float before;
+    float after;
+    AudioTime time;
+};
+typedef struct HoldModulator HoldModulator;
+
+/// @brief Sine wave low-frequency oscillator.
+///
+/// @details It looks like this: `∿`.
+///
+/// `low` is the lowest produced value, `high` is the highest.
+struct SineModulator
+{
+    float freq;
+    float low;
+    float high;
+};
+typedef struct SineModulator SineModulator;
 
 // -- FUNCTIONS -- //
 
