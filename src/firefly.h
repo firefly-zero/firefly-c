@@ -213,6 +213,7 @@ enum ModParam
 typedef enum ModParam ModParam;
 
 /// @brief A time or duration used by audio modulators.
+/// @details Must be constructed using Samples(x), Seconds(x), or Miliseconds(x).
 struct AudioTime
 {
     uint32_t samples;
@@ -265,6 +266,9 @@ typedef struct SineModulator SineModulator;
 
 Angle Radians(float a);
 Angle Degrees(float a);
+AudioTime Samples(int32_t s);
+AudioTime Seconds(int32_t s);
+AudioTime Miliseconds(int32_t s);
 
 void ClearScreen(Color c);
 void SetColor(Color c, RGB v);

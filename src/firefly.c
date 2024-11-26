@@ -18,6 +18,24 @@ Angle Degrees(float a)
     return r;
 };
 
+AudioTime Samples(int32_t s)
+{
+    struct AudioTime t = {s};
+    return t;
+}
+
+AudioTime Seconds(int32_t s)
+{
+    struct AudioTime t = {s * SAMPLE_RATE};
+    return t;
+}
+
+AudioTime Miliseconds(int32_t s)
+{
+    struct AudioTime t = {s * SAMPLE_RATE / 1000};
+    return t;
+}
+
 // -- GRAPHICS -- //
 
 /// @brief Fill the whole frame with the given color.
