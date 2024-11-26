@@ -98,6 +98,19 @@ void DrawSubImage(SubImage s, Point p)
     ffb_drawSubImage((int)s.image.head, s.image.size, p.x, p.y, s.point.x, s.point.y, s.size.width, s.size.height);
 }
 
+/// @brief Set the target image for all subsequent drawing operations.
+void SetCanvas(Canvas c)
+{
+    ffb_setCanvas((int)c.head, c.size);
+}
+
+/// @brief Make all subsequent drawing operations target the screen instead of a canvas.
+/// @details Cancels the effect of [SetCanvas].
+void UnsetCanvas()
+{
+    ffb_unsetCanvas();
+}
+
 // -- INPUT -- //
 
 /// @brief Read touchpad state: if it's pressed and where.

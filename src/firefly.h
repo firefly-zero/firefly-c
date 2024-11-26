@@ -192,6 +192,8 @@ void DrawArc(Point p, int32_t d, Angle start, Angle sweep, Style s);
 void DrawSector(Point p, int32_t d, Angle start, Angle sweep, Style s);
 void DrawImage(Image img, Point p);
 void DrawSubImage(SubImage s, Point p);
+void SetCanvas(Canvas c);
+void UnsetCanvas();
 
 Pad ReadPad(Peer peer);
 Buttons ReadButtons(Peer peer);
