@@ -269,7 +269,7 @@ void Quit()
 // -- AUDIO -- //
 
 /// @brief Add sine [AudioNode] as a child node for the given node.
-AudioNode AddSine(AudioNode parent, double freq, double phase)
+AudioNode AddSine(AudioNode parent, float freq, float phase)
 {
     AudioNode node;
     node.id = ffba_addSine(parent.id, freq, phase);
@@ -277,7 +277,7 @@ AudioNode AddSine(AudioNode parent, double freq, double phase)
 }
 
 /// @brief Add square [AudioNode] as a child node for the given node.
-AudioNode AddSquare(AudioNode parent, double freq, double phase)
+AudioNode AddSquare(AudioNode parent, float freq, float phase)
 {
     AudioNode node;
     node.id = ffba_addSquare(parent.id, freq, phase);
@@ -285,7 +285,7 @@ AudioNode AddSquare(AudioNode parent, double freq, double phase)
 }
 
 /// @brief Add sawtooth [AudioNode] as a child node for the given node.
-AudioNode AddSawtooth(AudioNode parent, double freq, double phase)
+AudioNode AddSawtooth(AudioNode parent, float freq, float phase)
 {
     AudioNode node;
     node.id = ffba_addSawtooth(parent.id, freq, phase);
@@ -293,7 +293,7 @@ AudioNode AddSawtooth(AudioNode parent, double freq, double phase)
 }
 
 /// @brief Add triangle [AudioNode] as a child node for the given node.
-AudioNode AddTriangle(AudioNode parent, double freq, double phase)
+AudioNode AddTriangle(AudioNode parent, float freq, float phase)
 {
     AudioNode node;
     node.id = ffba_addTriangle(parent.id, freq, phase);
@@ -350,7 +350,7 @@ AudioNode AddAllForOne(AudioNode parent)
 }
 
 /// @brief Add gain [AudioNode] as a child node for the given node.
-AudioNode AddGain(AudioNode parent, double lvl)
+AudioNode AddGain(AudioNode parent, float lvl)
 {
     AudioNode node;
     node.id = ffba_addGain(parent.id, lvl);
@@ -374,7 +374,7 @@ AudioNode AddConcat(AudioNode parent)
 }
 
 /// @brief Add pan [AudioNode] as a child node for the given node.
-AudioNode AddPan(AudioNode parent, double lvl)
+AudioNode AddPan(AudioNode parent, float lvl)
 {
     AudioNode node;
     node.id = ffba_addPan(parent.id, lvl);
@@ -406,7 +406,7 @@ AudioNode AddTrackPosition(AudioNode parent)
 }
 
 /// @brief Add lowpass [AudioNode] as a child node for the given node.
-AudioNode AddLowPass(AudioNode parent, double freq, double q)
+AudioNode AddLowPass(AudioNode parent, float freq, float q)
 {
     AudioNode node;
     node.id = ffba_addLowPass(parent.id, freq, q);
@@ -414,7 +414,7 @@ AudioNode AddLowPass(AudioNode parent, double freq, double q)
 }
 
 /// @brief Add highpass [AudioNode] as a child node for the given node.
-AudioNode AddHighPass(AudioNode parent, double freq, double q)
+AudioNode AddHighPass(AudioNode parent, float freq, float q)
 {
     AudioNode node;
     node.id = ffba_addHighPass(parent.id, freq, q);
@@ -446,7 +446,7 @@ AudioNode AddSwap(AudioNode parent)
 }
 
 /// @brief Add clip [AudioNode] as a child node for the given node.
-AudioNode AddClip(AudioNode parent, double low, double high)
+AudioNode AddClip(AudioNode parent, float low, float high)
 {
     AudioNode node;
     node.id = ffba_addClip(parent.id, low, high);

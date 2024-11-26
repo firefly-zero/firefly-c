@@ -123,16 +123,16 @@ void ffb_quit();
 // sources (aka generators)
 
 WASM_IMPORT("audio", "add_sine")
-uint32_t ffba_addSine(uint32_t parentID, double freq, double phase);
+uint32_t ffba_addSine(uint32_t parentID, float freq, float phase);
 
 WASM_IMPORT("audio", "add_square")
-uint32_t ffba_addSquare(uint32_t parentID, double freq, double phase);
+uint32_t ffba_addSquare(uint32_t parentID, float freq, float phase);
 
 WASM_IMPORT("audio", "add_sawtooth")
-uint32_t ffba_addSawtooth(uint32_t parentID, double freq, double phase);
+uint32_t ffba_addSawtooth(uint32_t parentID, float freq, float phase);
 
 WASM_IMPORT("audio", "add_triangle")
-uint32_t ffba_addTriangle(uint32_t parentID, double freq, double phase);
+uint32_t ffba_addTriangle(uint32_t parentID, float freq, float phase);
 
 WASM_IMPORT("audio", "add_noise")
 uint32_t ffba_addNoise(uint32_t parentID, int32_t seed);
@@ -155,7 +155,7 @@ WASM_IMPORT("audio", "add_all_for_one")
 uint32_t ffba_addAllForOne(uint32_t parentID);
 
 WASM_IMPORT("audio", "add_gain")
-uint32_t ffba_addGain(uint32_t parentID, double lvl);
+uint32_t ffba_addGain(uint32_t parentID, float lvl);
 
 WASM_IMPORT("audio", "add_loop")
 uint32_t ffba_addLoop(uint32_t parentID);
@@ -164,7 +164,7 @@ WASM_IMPORT("audio", "add_concat")
 uint32_t ffba_addConcat(uint32_t parentID);
 
 WASM_IMPORT("audio", "add_pan")
-uint32_t ffba_addPan(uint32_t parentID, double lvl);
+uint32_t ffba_addPan(uint32_t parentID, float lvl);
 
 WASM_IMPORT("audio", "add_mute")
 uint32_t ffba_addMute(uint32_t parentID);
@@ -176,10 +176,10 @@ WASM_IMPORT("audio", "add_track_position")
 uint32_t ffba_addTrackPosition(uint32_t parentID);
 
 WASM_IMPORT("audio", "add_low_pass")
-uint32_t ffba_addLowPass(uint32_t parentID, double freq, double q);
+uint32_t ffba_addLowPass(uint32_t parentID, float freq, float q);
 
 WASM_IMPORT("audio", "add_high_pass")
-uint32_t ffba_addHighPass(uint32_t parentID, double freq, double q);
+uint32_t ffba_addHighPass(uint32_t parentID, float freq, float q);
 
 WASM_IMPORT("audio", "add_take_left")
 uint32_t ffba_addTakeLeft(uint32_t parentID);
@@ -191,18 +191,18 @@ WASM_IMPORT("audio", "add_swap")
 uint32_t ffba_addSwap(uint32_t parentID);
 
 WASM_IMPORT("audio", "add_clip")
-uint32_t ffba_addClip(uint32_t parentID, double low, double high);
+uint32_t ffba_addClip(uint32_t parentID, float low, float high);
 
 // modulators
 
 WASM_IMPORT("audio", "mod_linear")
-void ffba_modLinear(uint32_t nodeID, uint32_t param, double aStart, double aEnd, uint32_t startAt, uint32_t endAt);
+void ffba_modLinear(uint32_t nodeID, uint32_t param, float aStart, float aEnd, uint32_t startAt, uint32_t endAt);
 
 WASM_IMPORT("audio", "mod_hold")
-void ffba_modHold(uint32_t nodeID, uint32_t param, double v1, double v2, uint32_t time);
+void ffba_modHold(uint32_t nodeID, uint32_t param, float v1, float v2, uint32_t time);
 
 WASM_IMPORT("audio", "mod_sine")
-void ffba_modSine(uint32_t nodeID, uint32_t param, double freq, double low, double high);
+void ffba_modSine(uint32_t nodeID, uint32_t param, float freq, float low, float high);
 
 WASM_IMPORT("audio", "reset")
 void ffba_reset(uint32_t nodeID);
