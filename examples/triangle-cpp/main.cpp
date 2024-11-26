@@ -2,8 +2,8 @@
 
 BOOT void boot()
 {
-    ClearScreen(WHITE);
-    DrawTriangle(
+    clear_screen(WHITE);
+    draw_triangle(
         {60, 10}, {40, 40}, {80, 40},
         {
             .fill_color = LIGHT_GRAY,

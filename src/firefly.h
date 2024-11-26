@@ -43,8 +43,8 @@ typedef struct Size Size;
 
 /// @brief An angle between two vectors.
 ///
-/// @details Used by DrawArc and DrawSector.
-/// Must be constructed using Radians or Degrees function.
+/// @details Used by draw_arc and draw_sector.
+/// Must be constructed using radians(x) or degrees(x) function.
 struct Angle
 {
     float a;
@@ -213,7 +213,7 @@ enum ModParam
 typedef enum ModParam ModParam;
 
 /// @brief A time or duration used by audio modulators.
-/// @details Must be constructed using Samples(x), Seconds(x), or Miliseconds(x).
+/// @details Must be constructed using samples(x), seconds(x), or miliseconds(x).
 struct AudioTime
 {
     uint32_t samples;
@@ -264,72 +264,72 @@ typedef struct SineModulator SineModulator;
 
 // -- FUNCTIONS -- //
 
-Angle Radians(float a);
-Angle Degrees(float a);
-AudioTime Samples(int32_t s);
-AudioTime Seconds(int32_t s);
-AudioTime Miliseconds(int32_t s);
+Angle radians(float a);
+Angle degrees(float a);
+AudioTime samples(int32_t s);
+AudioTime seconds(int32_t s);
+AudioTime miliseconds(int32_t s);
 
-void ClearScreen(Color c);
-void SetColor(Color c, RGB v);
-void DrawPoint(Point p, Color c);
-void DrawLine(Point a, Point b, LineStyle s);
-void DrawRect(Point p, Size b, Style s);
-void DrawRoundedRect(Point p, Size b, Size c, Style s);
-void DrawCircle(Point p, int32_t d, Style s);
-void DrawEllipse(Point p, Size b, Style s);
-void DrawTriangle(Point a, Point b, Point c, Style s);
-void DrawArc(Point p, int32_t d, Angle start, Angle sweep, Style s);
-void DrawSector(Point p, int32_t d, Angle start, Angle sweep, Style s);
-void DrawImage(Image img, Point p);
-void DrawSubImage(SubImage s, Point p);
-void SetCanvas(Canvas c);
-void UnsetCanvas();
+void clear_screen(Color c);
+void set_color(Color c, RGB v);
+void draw_point(Point p, Color c);
+void draw_line(Point a, Point b, LineStyle s);
+void draw_rect(Point p, Size b, Style s);
+void draw_rounded_rect(Point p, Size b, Size c, Style s);
+void draw_circle(Point p, int32_t d, Style s);
+void draw_ellipse(Point p, Size b, Style s);
+void draw_triangle(Point a, Point b, Point c, Style s);
+void draw_arc(Point p, int32_t d, Angle start, Angle sweep, Style s);
+void draw_sector(Point p, int32_t d, Angle start, Angle sweep, Style s);
+void draw_image(Image img, Point p);
+void draw_sub_image(SubImage s, Point p);
+void set_canvas(Canvas c);
+void unset_canvas();
 
-Pad ReadPad(Peer peer);
-Buttons ReadButtons(Peer peer);
+Pad read_pad(Peer peer);
+Buttons read_buttons(Peer peer);
 
-size_t GetFileSize(char *path);
-File LoadFile(char *path, Buffer buf);
-void DumpFile(char *path, File f);
-void RemoveFile(char *path);
+size_t get_file_size(char *path);
+File load_file(char *path, Buffer buf);
+void dump_file(char *path, File f);
+void remove_file(char *path);
 
-Peer GetMe();
-Peers GetPeers();
-bool IsOnline(Peers peers, Peer peer);
+Peer get_me();
+Peers get_peers();
+bool is_online(Peers peers, Peer peer);
 
-void LogDebug(char *msg);
-void LogError(char *msg);
-void SetSeed(uintptr_t seed);
-uintptr_t GetRandom();
-Buffer GetName(Buffer buf);
-void Restart();
-void Quit();
+void log_debug(char *msg);
+void log_error(char *msg);
+void set_seed(uintptr_t seed);
+uintptr_t get_random();
+Buffer get_name(Buffer buf);
+void restart();
+void quit();
 
-AudioNode AddSine(AudioNode parent, float freq, float phase);
-AudioNode AddSquare(AudioNode parent, float freq, float phase);
-AudioNode AddSawtooth(AudioNode parent, float freq, float phase);
-AudioNode AddTriangle(AudioNode parent, float freq, float phase);
-AudioNode AddNoise(AudioNode parent, int32_t seed);
-AudioNode AddEmpty(AudioNode parent);
-AudioNode AddZero(AudioNode parent);
-AudioNode AddFile(AudioNode parent, char *path);
-AudioNode AddMix(AudioNode parent);
-AudioNode AddAllForOne(AudioNode parent);
-AudioNode AddGain(AudioNode parent, float lvl);
-AudioNode AddLoop(AudioNode parent);
-AudioNode AddConcat(AudioNode parent);
-AudioNode AddPan(AudioNode parent, float lvl);
-AudioNode AddMute(AudioNode parent);
-AudioNode AddPause(AudioNode parent);
-AudioNode AddTrackPosition(AudioNode parent);
-AudioNode AddLowPass(AudioNode parent, float freq, float q);
-AudioNode AddHighPass(AudioNode parent, float freq, float q);
-AudioNode AddTakeLeft(AudioNode parent);
-AudioNode AddTakeRight(AudioNode parent);
-AudioNode AddSwap(AudioNode parent);
-AudioNode AddClip(AudioNode parent, float low, float high);
+AudioNode add_sine(AudioNode parent, float freq, float phase);
+AudioNode add_square(AudioNode parent, float freq, float phase);
+AudioNode add_sawtooth(AudioNode parent, float freq, float phase);
+AudioNode add_triangle(AudioNode parent, float freq, float phase);
+AudioNode add_noise(AudioNode parent, int32_t seed);
+AudioNode add_empty(AudioNode parent);
+AudioNode add_zero(AudioNode parent);
+AudioNode add_file(AudioNode parent, char *path);
+AudioNode add_mix(AudioNode parent);
+AudioNode add_all_for_one(AudioNode parent);
+AudioNode add_gain(AudioNode parent, float lvl);
+AudioNode add_loop(AudioNode parent);
+AudioNode add_concat(AudioNode parent);
+AudioNode add_pan(AudioNode parent, float lvl);
+AudioNode add_mute(AudioNode parent);
+AudioNode add_pause(AudioNode parent);
+AudioNode add_track_position(AudioNode parent);
+AudioNode add_low_pass(AudioNode parent, float freq, float q);
+AudioNode add_high_pass(AudioNode parent, float freq, float q);
+AudioNode add_take_left(AudioNode parent);
+AudioNode add_take_right(AudioNode parent);
+AudioNode add_swap(AudioNode parent);
+AudioNode add_clip(AudioNode parent, float low, float high);
 
-void AudioReset(AudioNode node);
-void AudioResetAll(AudioNode node);
-void AudioClear(AudioNode node);
+void audio_reset(AudioNode node);
+void audio_reset_all(AudioNode node);
+void audio_clear(AudioNode node);
