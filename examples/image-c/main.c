@@ -19,8 +19,6 @@ BOOT void boot()
 UPDATE void update()
 {
     ClearScreen(WHITE);
-    Point point;
-    point.x = 10;
-    point.y = 10;
+    Point point = {10, 10};
     DrawImage(image, point);
 }
