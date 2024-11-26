@@ -6,7 +6,6 @@
 #include "firefly_bindings.h"
 #include <stdbool.h>
 #include <stdint.h>
-#include <string.h>
 
 /// @brief Mark a "boot" callback function.
 #define BOOT __attribute__((export_name("boot")))
@@ -29,7 +28,9 @@
 /// @details Typically, the upper-left corner of a bounding box of a shape.
 struct Point
 {
+    /// @brief The X coordinate, the number of pixels from the screen left.
     int32_t x;
+    /// @brief The Y coordinate, the number of pixels from the screen top.
     int32_t y;
 };
 typedef struct Point Point;
@@ -39,7 +40,9 @@ typedef struct Point Point;
 /// @details The width and height must be positive.
 struct Size
 {
+    /// @brief The width of the bounding box, in pixels.
     int32_t width;
+    /// @brief The height of the bounding box, in pixels.
     int32_t height;
 };
 typedef struct Size Size;
@@ -50,6 +53,7 @@ typedef struct Size Size;
 /// Must be constructed using radians(x) or degrees(x) function.
 struct Angle
 {
+    /// @private
     float a;
 };
 typedef struct Angle Angle;
@@ -57,22 +61,39 @@ typedef struct Angle Angle;
 /// @brief A pointer to a color in the color palette.
 enum Color
 {
+    /// @brief No color (100% transparency).
     NONE = 0,
+    /// @brief Black color: #1A1C2C.
     BLACK = 1,
+    /// @brief Purple color: #5D275D.
     PURPLE = 2,
+    /// @brief Red color: #B13E53.
     RED = 3,
+    /// @brief Orange color: #EF7D57.
     ORANGE = 4,
+    /// @brief Yellow color: #FFCD75.
     YELLOW = 5,
+    /// @brief Light green color: #A7F070.
     LIGHT_GREEN = 6,
+    /// @brief Green color: #38B764.
     GREEN = 7,
+    /// @brief Dark green color: #257179.
     DARK_GREEN = 8,
+    /// @brief Dark blue color: #29366F.
     DARK_BLUE = 9,
+    /// @brief Blue color: #3B5DC9.
     BLUE = 10,
+    /// @brief Light blue color: #41A6F6.
     LIGHT_BLUE = 11,
+    /// @brief Cyan color: #73EFF7.
     CYAN = 12,
+    /// @brief White color: #F4F4F4.
     WHITE = 13,
+    /// @brief Light gray color: #94B0C2.
     LIGHT_GRAY = 14,
+    /// @brief Gray color: #566C86.
     GRAY = 15,
+    /// @brief Dark gray color: #333C57.
     DARK_GRAY = 16,
 };
 typedef enum Color Color;
@@ -80,8 +101,12 @@ typedef enum Color Color;
 /// @brief Style of a shape.
 struct Style
 {
+    /// @brief The color to use to fill the shape.
     Color fill_color;
+    /// @brief The color to use for the shape stroke.
     Color stroke_color;
+    /// @brief The width of the shape stroke.
+    /// @details If zero, a solid shape without a stroke will be drawn.
     int32_t stroke_width;
 };
 typedef struct Style Style;
@@ -89,7 +114,9 @@ typedef struct Style Style;
 /// @brief The same as Style but without a fill color (only stroke color and width).
 struct LineStyle
 {
+    /// @brief The line color.
     Color color;
+    /// @brief The line width, in pixels.
     int32_t width;
 };
 typedef struct LineStyle LineStyle;
@@ -97,8 +124,11 @@ typedef struct LineStyle LineStyle;
 /// @brief The RGB value of a color in the palette.
 struct RGB
 {
+    /// @brief The red component.
     int8_t r;
+    /// @brief The green component.
     int8_t g;
+    /// @brief The blue component.
     int8_t b;
 };
 typedef struct RGB RGB;
@@ -106,11 +136,13 @@ typedef struct RGB RGB;
 // -- FS -- //
 
 /// @brief A dynamically sized array.
-/// @details SImilar to vector in C++.
+/// @details Similar to vector in C++.
 /// The size of the array pointed to by `head` must be at least `size` bytes long.
 struct Buffer
 {
+    /// @brief The slice size, in bytes.
     size_t size;
+    /// @brief The pointer to the first element of the underlying array.
     char *head;
 };
 typedef struct Buffer Buffer;
@@ -137,6 +169,7 @@ struct Pad
 {
     int16_t x;
     int16_t y;
+    /// @brief If the touchpad is touched.
     bool touched;
 };
 typedef struct Pad Pad;
@@ -158,6 +191,7 @@ typedef struct Buttons Buttons;
 /// @brief The bitmap of peers currently online.
 struct Peers
 {
+    /// @private
     uint32_t online;
 };
 typedef struct Peers Peers;
@@ -166,15 +200,17 @@ typedef struct Peers Peers;
 typedef int32_t Peer;
 
 /// @brief A peer ID representing all peers at once.
-const Peer COMBINED = 0xFF;
+#define COMBINED = 0xFF
 
 // -- AUDIO -- //
 
-const int32_t SAMPLE_RATE = 44100;
+/// @brief The sample rate of the audio engine.
+#define SAMPLE_RATE 44100
 
 /// @brief A node in the audio tree.
 struct AudioNode
 {
+    /// @private
     uint32_t id;
 };
 typedef struct AudioNode AudioNode;
