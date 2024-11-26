@@ -1,0 +1,14 @@
+# https://taskfile.dev
+version: "3"
+
+tasks:
+  install-doxygen:
+    status:
+      - which doxygen
+    cmds:
+      - sudo apt install -y doxygen
+
+  docs:
+    cmds:
+      - task: install-doxygen
+      - doxygen Doxyfile

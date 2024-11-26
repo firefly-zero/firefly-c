@@ -115,7 +115,7 @@ typedef struct Buffer File;
 typedef struct Buffer Image;
 typedef struct Buffer Canvas;
 
-/// @brief A subregion of an [Image].
+/// @brief A subregion of an Image.
 struct SubImage
 {
     /// @brief The original image.
@@ -240,7 +240,7 @@ typedef struct LinearModulator LinearModulator;
 /// @details It looks like this: `⎽│⎺` or `⎺│⎽`.
 ///
 /// The value before `time` is `before` and the value after `time` is `after`.
-/// Equivalent to [LinearModulator] with `start_at` being equal to `end_at`.
+/// Equivalent to LinearModulator with `start_at` being equal to `end_at`.
 struct HoldModulator
 {
     float before;
