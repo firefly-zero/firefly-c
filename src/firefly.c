@@ -41,92 +41,92 @@ AudioTime miliseconds(int32_t s)
 /// @brief Fill the whole frame with the given color.
 void clear_screen(Color c)
 {
-    ffb_clearScreen(c);
+    _ffb_clear_screen(c);
 }
 
 /// @brief Set a color value in the palette.
 void set_color(Color c, RGB v)
 {
-    ffb_setColor(c, v.r, v.g, v.b);
+    _ffb_set_color(c, v.r, v.g, v.b);
 }
 
 /// @brief Set a single point (1 pixel is scaling is 1) on the frame.
 void draw_point(Point p, Color c)
 {
-    ffb_drawPoint(p.x, p.y, c);
+    _ffb_draw_point(p.x, p.y, c);
 }
 
 /// @brief Draw a straight line from point a to point b.
 void draw_line(Point a, Point b, LineStyle s)
 {
-    ffb_drawLine(a.x, a.y, b.x, b.y, s.color, s.width);
+    _ffb_draw_line(a.x, a.y, b.x, b.y, s.color, s.width);
 }
 
 /// @brief Draw a rectangle filling the given bounding box.
 void draw_rect(Point p, Size b, Style s)
 {
-    ffb_drawRect(p.x, p.y, b.width, b.height, s.fill_color, s.stroke_color, s.stroke_width);
+    _ffb_draw_rect(p.x, p.y, b.width, b.height, s.fill_color, s.stroke_color, s.stroke_width);
 }
 
 /// @brief Draw a rectangle with rounded corners.
 void draw_rounded_rect(Point p, Size b, Size c, Style s)
 {
-    ffb_drawRoundedRect(p.x, p.y, b.width, b.height, c.width, c.height, s.fill_color, s.stroke_color, s.stroke_width);
+    _ffb_draw_rounded_rect(p.x, p.y, b.width, b.height, c.width, c.height, s.fill_color, s.stroke_color, s.stroke_width);
 }
 
 /// @brief Draw a circle with the given diameter.
 void draw_circle(Point p, int32_t d, Style s)
 {
-    ffb_drawCircle(p.x, p.y, d, s.fill_color, s.stroke_color, s.stroke_width);
+    _ffb_draw_circle(p.x, p.y, d, s.fill_color, s.stroke_color, s.stroke_width);
 }
 
 /// @brief Draw an ellipse (oval).
 void draw_ellipse(Point p, Size b, Style s)
 {
-    ffb_drawEllipse(p.x, p.y, b.width, b.height, s.fill_color, s.stroke_color, s.stroke_width);
+    _ffb_draw_ellipse(p.x, p.y, b.width, b.height, s.fill_color, s.stroke_color, s.stroke_width);
 }
 
 /// @brief Draw a triangle.
 void draw_triangle(Point a, Point b, Point c, Style s)
 {
-    ffb_drawTriangle(a.x, a.y, b.x, b.y, c.x, c.y, s.fill_color, s.stroke_color, s.stroke_width);
+    _ffb_draw_triangle(a.x, a.y, b.x, b.y, c.x, c.y, s.fill_color, s.stroke_color, s.stroke_width);
 }
 
 /// @brief Draw an arc.
 void draw_arc(Point p, int32_t d, Angle start, Angle sweep, Style s)
 {
-    ffb_drawArc(p.x, p.y, d, start.a, sweep.a, s.fill_color, s.stroke_color, s.stroke_width);
+    _ffb_draw_arc(p.x, p.y, d, start.a, sweep.a, s.fill_color, s.stroke_color, s.stroke_width);
 }
 
 /// @brief Draw a sector.
 void draw_sector(Point p, int32_t d, Angle start, Angle sweep, Style s)
 {
-    ffb_drawSector(p.x, p.y, d, start.a, sweep.a, s.fill_color, s.stroke_color, s.stroke_width);
+    _ffb_draw_sector(p.x, p.y, d, start.a, sweep.a, s.fill_color, s.stroke_color, s.stroke_width);
 }
 
 /// @brief Draw an image.
 void draw_image(Image i, Point p)
 {
-    ffb_drawImage((int)i.head, i.size, p.x, p.y);
+    _ffb_draw_image((int)i.head, i.size, p.x, p.y);
 }
 
 /// @brief Draw an image subregion.
 void draw_sub_image(SubImage s, Point p)
 {
-    ffb_drawSubImage((int)s.image.head, s.image.size, p.x, p.y, s.point.x, s.point.y, s.size.width, s.size.height);
+    _ffb_draw_sub_image((int)s.image.head, s.image.size, p.x, p.y, s.point.x, s.point.y, s.size.width, s.size.height);
 }
 
 /// @brief Set the target image for all subsequent drawing operations.
 void set_canvas(Canvas c)
 {
-    ffb_setCanvas((int)c.head, c.size);
+    _ffb_set_canvas((int)c.head, c.size);
 }
 
 /// @brief Make all subsequent drawing operations target the screen instead of a canvas.
 /// @details Cancels the effect of [set_canvas].
 void unset_canvas()
 {
-    ffb_unsetCanvas();
+    _ffb_unset_canvas();
 }
 
 // -- INPUT -- //
@@ -134,7 +134,7 @@ void unset_canvas()
 /// @brief Read touchpad state: if it's pressed and where.
 Pad read_pad(Peer peer)
 {
-    int32_t raw = ffb_readPad(peer);
+    int32_t raw = _ffb_read_pad(peer);
     Pad pad;
     if (raw == 0xffff)
     {
@@ -154,7 +154,7 @@ Pad read_pad(Peer peer)
 /// @brief Get pressed buttons.
 Buttons read_buttons(Peer peer)
 {
-    int32_t raw = ffb_readButtons(peer);
+    int32_t raw = _ffb_read_buttons(peer);
     Buttons buttons;
     buttons.a = (raw & 0b1) != 0;
     buttons.b = (raw & 0b10) != 0;
@@ -172,7 +172,7 @@ Buttons read_buttons(Peer peer)
 size_t get_file_size(char *path)
 {
     size_t pathLen = strlen(path);
-    return ffb_getFileSize((int)path, pathLen);
+    return _ffb_get_file_size((int)path, pathLen);
 }
 
 /// @brief Read file from the given path into the given buffer.
@@ -181,7 +181,7 @@ size_t get_file_size(char *path)
 File load_file(char *path, Buffer buf)
 {
     size_t pathLen = strlen(path);
-    int32_t size = ffb_loadFile((int)path, pathLen, (int)buf.head, buf.size);
+    int32_t size = _ffb_load_file((int)path, pathLen, (int)buf.head, buf.size);
     File file;
     if (buf.size < size)
     {
@@ -198,7 +198,7 @@ File load_file(char *path, Buffer buf)
 void dump_file(char *path, File f)
 {
     size_t pathLen = strlen(path);
-    ffb_dumpFile((int)path, pathLen, (int)f.head, f.size);
+    _ffb_dump_file((int)path, pathLen, (int)f.head, f.size);
 }
 
 /// @brief Delete a file created using [dump_file].
@@ -206,7 +206,7 @@ void dump_file(char *path, File f)
 void remove_file(char *path)
 {
     size_t pathLen = strlen(path);
-    ffb_removeFile((int)path, pathLen);
+    _ffb_remove_file((int)path, pathLen);
 }
 
 // -- NET -- //
@@ -214,14 +214,14 @@ void remove_file(char *path)
 /// @brief Get the [Peer] corresponding to the current device.
 Peer get_me()
 {
-    return ffb_getMe();
+    return _ffb_get_me();
 }
 
 /// @brief Get a mapping of peers currently online.
 Peers get_peers()
 {
     Peers peers;
-    peers.online = ffb_getPeers();
+    peers.online = _ffb_get_peers();
     return peers;
 }
 
@@ -239,33 +239,33 @@ bool is_online(Peers peers, Peer peer)
 void log_debug(char *msg)
 {
     size_t msgLen = strlen(msg);
-    ffb_logDebug((int)msg, msgLen);
+    _ffb_log_debug((int)msg, msgLen);
 }
 
 /// @brief Write an error message.
 void log_error(char *msg)
 {
     size_t msgLen = strlen(msg);
-    ffb_logError((int)msg, msgLen);
+    _ffb_log_error((int)msg, msgLen);
 }
 
 /// @brief Set the random seed. Useful for testing.
 void set_seed(uintptr_t seed)
 {
-    ffb_setSeed(seed);
+    _ffb_set_seed(seed);
 }
 
 /// @brief Get a random integer.
 uintptr_t get_random()
 {
-    return ffb_getRandom();
+    return _ffb_get_random();
 }
 
 /// @brief Write device name into the given [Buffer].
 /// @details The buffer size must be at least 16 bytes.
 Buffer get_name(Buffer buf)
 {
-    int32_t size = ffb_getName((int)buf.head, buf.size);
+    int32_t size = _ffb_get_name((int)buf.head, buf.size);
     File name;
     name.size = size;
     name.head = buf.head;
@@ -275,13 +275,13 @@ Buffer get_name(Buffer buf)
 /// @brief Ask the runtime to restart the app after the current update iteration.
 void restart()
 {
-    ffb_restart();
+    _ffb_restart();
 }
 
 /// @brief Ask the runtime to exit the app after the current update iteration.
 void quit()
 {
-    ffb_quit();
+    _ffb_quit();
 }
 
 // -- AUDIO -- //
@@ -290,7 +290,7 @@ void quit()
 AudioNode add_sine(AudioNode parent, float freq, float phase)
 {
     AudioNode node;
-    node.id = ffba_addSine(parent.id, freq, phase);
+    node.id = _ffba_add_sine(parent.id, freq, phase);
     return node;
 }
 
@@ -298,7 +298,7 @@ AudioNode add_sine(AudioNode parent, float freq, float phase)
 AudioNode add_square(AudioNode parent, float freq, float phase)
 {
     AudioNode node;
-    node.id = ffba_addSquare(parent.id, freq, phase);
+    node.id = _ffba_add_square(parent.id, freq, phase);
     return node;
 }
 
@@ -306,7 +306,7 @@ AudioNode add_square(AudioNode parent, float freq, float phase)
 AudioNode add_sawtooth(AudioNode parent, float freq, float phase)
 {
     AudioNode node;
-    node.id = ffba_addSawtooth(parent.id, freq, phase);
+    node.id = _ffba_add_sawtooth(parent.id, freq, phase);
     return node;
 }
 
@@ -314,7 +314,7 @@ AudioNode add_sawtooth(AudioNode parent, float freq, float phase)
 AudioNode add_triangle(AudioNode parent, float freq, float phase)
 {
     AudioNode node;
-    node.id = ffba_addTriangle(parent.id, freq, phase);
+    node.id = _ffba_add_triangle(parent.id, freq, phase);
     return node;
 }
 
@@ -322,7 +322,7 @@ AudioNode add_triangle(AudioNode parent, float freq, float phase)
 AudioNode add_noise(AudioNode parent, int32_t seed)
 {
     AudioNode node;
-    node.id = ffba_addNoise(parent.id, seed);
+    node.id = _ffba_add_noise(parent.id, seed);
     return node;
 }
 
@@ -330,7 +330,7 @@ AudioNode add_noise(AudioNode parent, int32_t seed)
 AudioNode add_empty(AudioNode parent)
 {
     AudioNode node;
-    node.id = ffba_addEmpty(parent.id);
+    node.id = _ffba_add_empty(parent.id);
     return node;
 }
 
@@ -338,7 +338,7 @@ AudioNode add_empty(AudioNode parent)
 AudioNode add_zero(AudioNode parent)
 {
     AudioNode node;
-    node.id = ffba_addZero(parent.id);
+    node.id = _ffba_add_zero(parent.id);
     return node;
 }
 
@@ -347,7 +347,7 @@ AudioNode add_file(AudioNode parent, char *path)
 {
     size_t pathLen = strlen(path);
     AudioNode node;
-    node.id = ffba_addFile(parent.id, (int)path, pathLen);
+    node.id = _ffba_add_file(parent.id, (int)path, pathLen);
     return node;
 }
 
@@ -355,7 +355,7 @@ AudioNode add_file(AudioNode parent, char *path)
 AudioNode add_mix(AudioNode parent)
 {
     AudioNode node;
-    node.id = ffba_addMix(parent.id);
+    node.id = _ffba_add_mix(parent.id);
     return node;
 }
 
@@ -363,7 +363,7 @@ AudioNode add_mix(AudioNode parent)
 AudioNode add_all_for_one(AudioNode parent)
 {
     AudioNode node;
-    node.id = ffba_addAllForOne(parent.id);
+    node.id = _ffba_add_all_for_one(parent.id);
     return node;
 }
 
@@ -371,7 +371,7 @@ AudioNode add_all_for_one(AudioNode parent)
 AudioNode add_gain(AudioNode parent, float lvl)
 {
     AudioNode node;
-    node.id = ffba_addGain(parent.id, lvl);
+    node.id = _ffba_add_gain(parent.id, lvl);
     return node;
 }
 
@@ -379,7 +379,7 @@ AudioNode add_gain(AudioNode parent, float lvl)
 AudioNode add_loop(AudioNode parent)
 {
     AudioNode node;
-    node.id = ffba_addLoop(parent.id);
+    node.id = _ffba_add_loop(parent.id);
     return node;
 }
 
@@ -387,7 +387,7 @@ AudioNode add_loop(AudioNode parent)
 AudioNode add_concat(AudioNode parent)
 {
     AudioNode node;
-    node.id = ffba_addConcat(parent.id);
+    node.id = _ffba_add_concat(parent.id);
     return node;
 }
 
@@ -395,7 +395,7 @@ AudioNode add_concat(AudioNode parent)
 AudioNode add_pan(AudioNode parent, float lvl)
 {
     AudioNode node;
-    node.id = ffba_addPan(parent.id, lvl);
+    node.id = _ffba_add_pan(parent.id, lvl);
     return node;
 }
 
@@ -403,7 +403,7 @@ AudioNode add_pan(AudioNode parent, float lvl)
 AudioNode add_mute(AudioNode parent)
 {
     AudioNode node;
-    node.id = ffba_addMute(parent.id);
+    node.id = _ffba_add_mute(parent.id);
     return node;
 }
 
@@ -411,7 +411,7 @@ AudioNode add_mute(AudioNode parent)
 AudioNode add_pause(AudioNode parent)
 {
     AudioNode node;
-    node.id = ffba_addPause(parent.id);
+    node.id = _ffba_add_pause(parent.id);
     return node;
 }
 
@@ -419,7 +419,7 @@ AudioNode add_pause(AudioNode parent)
 AudioNode add_track_position(AudioNode parent)
 {
     AudioNode node;
-    node.id = ffba_addTrackPosition(parent.id);
+    node.id = _ffba_add_track_position(parent.id);
     return node;
 }
 
@@ -427,7 +427,7 @@ AudioNode add_track_position(AudioNode parent)
 AudioNode add_low_pass(AudioNode parent, float freq, float q)
 {
     AudioNode node;
-    node.id = ffba_addLowPass(parent.id, freq, q);
+    node.id = _ffba_add_low_pass(parent.id, freq, q);
     return node;
 }
 
@@ -435,7 +435,7 @@ AudioNode add_low_pass(AudioNode parent, float freq, float q)
 AudioNode add_high_pass(AudioNode parent, float freq, float q)
 {
     AudioNode node;
-    node.id = ffba_addHighPass(parent.id, freq, q);
+    node.id = _ffba_add_high_pass(parent.id, freq, q);
     return node;
 }
 
@@ -443,7 +443,7 @@ AudioNode add_high_pass(AudioNode parent, float freq, float q)
 AudioNode add_take_left(AudioNode parent)
 {
     AudioNode node;
-    node.id = ffba_addTakeLeft(parent.id);
+    node.id = _ffba_add_take_left(parent.id);
     return node;
 }
 
@@ -451,7 +451,7 @@ AudioNode add_take_left(AudioNode parent)
 AudioNode add_take_right(AudioNode parent)
 {
     AudioNode node;
-    node.id = ffba_addTakeRight(parent.id);
+    node.id = _ffba_add_take_right(parent.id);
     return node;
 }
 
@@ -459,7 +459,7 @@ AudioNode add_take_right(AudioNode parent)
 AudioNode add_swap(AudioNode parent)
 {
     AudioNode node;
-    node.id = ffba_addSwap(parent.id);
+    node.id = _ffba_add_swap(parent.id);
     return node;
 }
 
@@ -467,24 +467,24 @@ AudioNode add_swap(AudioNode parent)
 AudioNode add_clip(AudioNode parent, float low, float high)
 {
     AudioNode node;
-    node.id = ffba_addClip(parent.id, low, high);
+    node.id = _ffba_add_clip(parent.id, low, high);
     return node;
 }
 
 /// @brief Reset the state of the given [AudioNode].
 void audio_reset(AudioNode node)
 {
-    ffba_reset(node.id);
+    _ffba_reset(node.id);
 }
 
 /// @brief Reset the state of the given [AudioNode] and all its child nodes.
 void audio_reset_all(AudioNode node)
 {
-    ffba_resetAll(node.id);
+    _ffba_reset_all(node.id);
 }
 
 /// @brief Remove all child nodes from the given [AudioNode].
 void audio_clear(AudioNode node)
 {
-    ffba_clear(node.id);
+    _ffba_clear(node.id);
 }
