@@ -174,6 +174,20 @@ struct Pad
 };
 typedef struct Pad Pad;
 
+/// @brief A classic 4-button representation of the Pad.
+struct DPad
+{
+    /// @brief If the left segment of the Pad is pressed.
+    bool left;
+    /// @brief If the right segment of the Pad is pressed.
+    bool right;
+    /// @brief If the upper segment of the Pad is pressed.
+    bool up;
+    /// @brief If the lower segment of the Pad is pressed.
+    bool down;
+};
+typedef struct DPad DPad;
+
 /// @brief State of the buttons. True is pressed, false is released.
 struct Buttons
 {
@@ -316,6 +330,7 @@ Angle degrees(float a);
 AudioTime samples(int32_t s);
 AudioTime seconds(int32_t s);
 AudioTime miliseconds(int32_t s);
+DPad pad_to_dpad(Pad pad);
 
 void clear_screen(Color c);
 void set_color(Color c, RGB v);

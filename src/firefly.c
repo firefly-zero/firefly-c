@@ -21,22 +21,36 @@ Angle degrees(float a)
     return r;
 };
 
+/// @brief Time in the number of samples.
 AudioTime samples(int32_t s)
 {
     struct AudioTime t = {s};
     return t;
 }
 
+/// @brief Time in seconds.
 AudioTime seconds(int32_t s)
 {
     struct AudioTime t = {s * SAMPLE_RATE};
     return t;
 }
 
+/// @brief Time in miliseconds.
 AudioTime miliseconds(int32_t s)
 {
     struct AudioTime t = {s * SAMPLE_RATE / 1000};
     return t;
+}
+
+/// @brief Convert Pad to DPad.
+DPad pad_to_dpad(Pad pad)
+{
+    DPad dpad = {
+        .left = pad.x <= -100,
+        .right = pad.x >= 100,
+        .up = pad.y <= -100,
+        .down = pad.y >= 100};
+    return dpad;
 }
 
 // -- GRAPHICS -- //
