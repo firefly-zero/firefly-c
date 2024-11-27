@@ -158,12 +158,12 @@ Pad read_pad(Peer peer)
 Buttons read_buttons(Peer peer)
 {
     int32_t raw = _ffb_read_buttons(peer);
-    Buttons buttons;
-    buttons.south = (raw & 0b1) != 0;
-    buttons.east = (raw & 0b10) != 0;
-    buttons.west = (raw & 0b100) != 0;
-    buttons.north = (raw & 0b1000) != 0;
-    buttons.menu = (raw & 0b10000) != 0;
+    Buttons buttons = {
+        .s = (raw & 0b1) != 0,
+        .e = (raw & 0b10) != 0,
+        .w = (raw & 0b100) != 0,
+        .n = (raw & 0b1000) != 0,
+        .menu = (raw & 0b10000) != 0};
     return buttons;
 }
 

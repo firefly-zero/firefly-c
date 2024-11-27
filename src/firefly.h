@@ -177,18 +177,18 @@ typedef struct Pad Pad;
 /// @brief State of the buttons. True is pressed, false is released.
 struct Buttons
 {
-    /// @brief The bottom button, like A on the X-Box controller.
+    /// @brief South. The bottom button, like A on the X-Box controller.
     /// @details Typically used for confirmation, main action, jump, etc.
-    bool south;
-    /// @brief The right button, like B on the X-Box controller.
+    bool s;
+    /// @brief East. The right button, like B on the X-Box controller.
     /// @details Typically used for cancellation, going to previous screen, etc.
-    bool east;
-    /// @brief The left button, like X on the X-Box controller.
+    bool e;
+    /// @brief West. The left button, like X on the X-Box controller.
     /// @details Typically used for attack.
-    bool west;
-    /// @brief The top button, like Y on the X-Box controller.
+    bool w;
+    /// @brief North. The top button, like Y on the X-Box controller.
     /// @details Typically used for a secondary action, like charged attack.
-    bool north;
+    bool n;
     /// @brief The menu button, almost always handled by the runtime.
     bool menu;
 };
