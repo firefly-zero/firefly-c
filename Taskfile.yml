@@ -12,3 +12,12 @@ tasks:
     cmds:
       - task: install-doxygen
       - doxygen Doxyfile
+
+  release:
+    desc: publish release
+    cmds:
+      - test {{.CLI_ARGS}}
+      - git tag {{.CLI_ARGS}}
+      - git push
+      - git push --tags
+      - gh release create --generate-notes {{.CLI_ARGS}}
