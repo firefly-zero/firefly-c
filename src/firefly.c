@@ -283,9 +283,9 @@ uintptr_t get_random()
 Buffer get_name(Buffer buf)
 {
     int32_t size = _ffb_get_name((int)buf.head, buf.size);
-    File name;
-    name.size = size;
-    name.head = buf.head;
+    File name = {
+        .size = size,
+        .head = buf.head};
     return name;
 }
 
@@ -299,6 +299,32 @@ void restart()
 void quit()
 {
     _ffb_quit();
+}
+
+// -- STATS -- //
+
+Progress add_progress(Peer p, Badge b, int16_t v)
+{
+    uint32_t r = _ffb_add_progress(p, b, v);
+    Progress progress = {
+        .done = r >> 16,
+        .goal = r};
+    return progress;
+}
+
+Progress get_progress(Peer p, Badge b)
+{
+    return add_progress(p, b, 0);
+}
+
+Score add_score(Peer p, Board b, Score v)
+{
+    return _ffb_add_score(p, b, v);
+}
+
+Score get_score(Peer p, Board b)
+{
+    return add_score(p, b, 0);
 }
 
 // -- AUDIO -- //

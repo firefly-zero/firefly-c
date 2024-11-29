@@ -16,6 +16,9 @@
 /// @brief Mark a "render_line" callback function.
 #define RENDER_LINE __attribute__((export_name("render_line")))
 
+/// @brief Mark a "cheat" callback function.
+#define CHEAT __attribute__((export_name("cheat")))
+
 /// @brief Screen width.
 #define WIDTH 240
 /// @brief Screen height.
@@ -222,7 +225,20 @@ typedef struct Peers Peers;
 typedef int32_t Peer;
 
 /// @brief A peer ID representing all peers at once.
-#define COMBINED = 0xFF
+const Peer COMBINED = 0xFF;
+
+// -- STATS -- //
+
+typedef uint32_t Badge;
+typedef uint32_t Board;
+typedef uint32_t Score;
+
+struct Progress
+{
+    uint16_t done;
+    uint16_t goal;
+};
+typedef struct Progress Progress;
 
 // -- AUDIO -- //
 
@@ -236,6 +252,9 @@ struct AudioNode
     uint32_t id;
 };
 typedef struct AudioNode AudioNode;
+
+/// @brief The root audio node. Its child nodes are mixed and played on the device output.
+const AudioNode OUT = {.id = 0};
 
 /// @brief A parameter of an audio node that can be modulated.
 enum ModParam
@@ -367,6 +386,11 @@ uintptr_t get_random();
 Buffer get_name(Buffer buf);
 void restart();
 void quit();
+
+Progress add_progress(Peer p, Badge b, int16_t v);
+Progress get_progress(Peer p, Badge b);
+Score add_score(Peer p, Badge b, Score v);
+Score get_score(Peer p, Badge b);
 
 AudioNode add_sine(AudioNode parent, float freq, float phase);
 AudioNode add_square(AudioNode parent, float freq, float phase);
