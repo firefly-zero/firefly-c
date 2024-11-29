@@ -9,10 +9,8 @@ BOOT void boot()
     // You could also use `get_file_size` to detect the file size
     // in runtime but that requires using an allocator.
     const size_t fileSize = 97;
-    Buffer buf;
     char head[fileSize];
-    buf.head = head;
-    buf.size = fileSize;
+    Buffer buf = {.head = head, .size = fileSize};
     image = load_file("img", buf);
 }
 
