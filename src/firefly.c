@@ -303,6 +303,13 @@ void quit()
 
 // -- STATS -- //
 
+/// @brief Add the given value to the progress for the badge.
+///
+/// @details May be negative if you want to decrease the progress.
+/// If zero, does not change the progress.
+///
+/// If the Peer is COMBINED, the progress is added to every peer
+/// and the returned value is the lowest progress.
 Progress add_progress(Peer p, Badge b, int16_t v)
 {
     uint32_t r = _ffb_add_progress(p, b, v);
@@ -312,16 +319,25 @@ Progress add_progress(Peer p, Badge b, int16_t v)
     return progress;
 }
 
+/// @brief Get the progress of earning the badge.
 Progress get_progress(Peer p, Badge b)
 {
     return add_progress(p, b, 0);
 }
 
+/// @brief Add the given score to the board.
+///
+/// @details May be negative if you want the lower scores
+/// to rank higher. Zero value is not added to the board.
+///
+/// If the Peer is COMBINED, the score is added for every peer
+/// and the returned value is the lowest of their best scores.
 Score add_score(Peer p, Board b, Score v)
 {
     return _ffb_add_score(p, b, v);
 }
 
+/// @brief Get the personal best of the player.
 Score get_score(Peer p, Board b)
 {
     return add_score(p, b, 0);

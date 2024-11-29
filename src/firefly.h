@@ -231,7 +231,7 @@ const Peer COMBINED = 0xFF;
 
 typedef uint32_t Badge;
 typedef uint32_t Board;
-typedef uint32_t Score;
+typedef int32_t Score;
 
 struct Progress
 {
