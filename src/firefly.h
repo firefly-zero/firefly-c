@@ -152,6 +152,7 @@ typedef struct Buffer Buffer;
 typedef struct Buffer File;
 typedef struct Buffer Image;
 typedef struct Buffer Canvas;
+typedef struct Buffer Stash;
 
 /// @brief A subregion of an Image.
 struct SubImage
@@ -378,6 +379,8 @@ void remove_file(char *path);
 Peer get_me();
 Peers get_peers();
 bool is_online(Peers peers, Peer peer);
+void save_stash(Peer p, Stash s);
+Stash load_stash(Peer p, Buffer s);
 
 void log_debug(char *msg);
 void log_error(char *msg);

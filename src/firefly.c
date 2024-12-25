@@ -250,6 +250,34 @@ bool is_online(Peers peers, Peer peer)
     return ((peers.online >> peer) & 1) != 0;
 }
 
+/// @brief Save the given Stash.
+///
+/// @details When called, the stash for the given peer will be stored in RAM.
+/// Calling load_stash() for the same peer will return that stash.
+/// On exit, the runtime will persist the stash in FS.
+/// Next time the app starts, calling load_stash() will restore the stash
+/// saved earlier.
+void save_stash(Peer p, Stash s)
+{
+    _ffb_save_stash(p, (int)s.head, s.size);
+}
+
+/// @brief Load Stash saved earlier (in this or previous run) by save_stash.
+///
+/// @details The buffer should be big enough to fit the stash.
+/// If it's not, the stash will be truncated.
+/// If there is no stash or it's empty, nil is returned.
+///
+/// If the given buffer is nil, a new buffer will be allocated
+/// big enough to fit the biggest allowed stash. At the moment, it is 80 bytes.
+Stash load_stash(Peer p, Buffer s)
+{
+    Stash res;
+    res.size = _ffb_load_stash(p, (int)s.head, s.size);
+    res.head = s.head;
+    return res;
+}
+
 // -- MISC -- //
 
 /// @brief Write a debug message.
