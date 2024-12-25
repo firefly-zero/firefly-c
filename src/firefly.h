@@ -19,6 +19,9 @@
 /// @brief Mark a "cheat" callback function.
 #define CHEAT __attribute__((export_name("cheat")))
 
+/// @brief Mark a "before_exit" callback function.
+#define BEFORE_EXIT __attribute__((export_name("BEFORE_EXIT")))
+
 /// @brief Screen width.
 #define WIDTH 240
 /// @brief Screen height.
