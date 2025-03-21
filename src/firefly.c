@@ -121,6 +121,20 @@ void draw_sector(Point p, int32_t d, Angle start, Angle sweep, Style s)
     _ffb_draw_sector(p.x, p.y, d, start.a, sweep.a, s.fill_color, s.stroke_color, s.stroke_width);
 }
 
+/// @brief Render a text message using the given font.
+void draw_text(char *t, Font f, Point p, Color c)
+{
+    size_t tLen = strlen(t);
+    _ffb_draw_text((int)t, tLen, (int)f.head, f.size, p.x, p.y, c);
+}
+
+/// @brief Render a QR code for the given text.
+void draw_qr(char *t, Point p, Color black, Color white)
+{
+    size_t tLen = strlen(t);
+    _ffb_draw_qr((int)t, tLen, p.x, p.y, black, white);
+}
+
 /// @brief Draw an image.
 void draw_image(Image i, Point p)
 {

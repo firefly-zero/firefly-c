@@ -156,6 +156,7 @@ typedef struct Buffer File;
 typedef struct Buffer Image;
 typedef struct Buffer Canvas;
 typedef struct Buffer Stash;
+typedef struct Buffer Font;
 
 /// @brief A subregion of an Image.
 struct SubImage
@@ -364,6 +365,8 @@ void draw_rounded_rect(Point p, Size b, Size c, Style s);
 void draw_circle(Point p, int32_t d, Style s);
 void draw_ellipse(Point p, Size b, Style s);
 void draw_triangle(Point a, Point b, Point c, Style s);
+void draw_text(char *t, Font f, Point p, Color c);
+void draw_qr(char *t, Point p, Color black, Color white);
 void draw_arc(Point p, int32_t d, Angle start, Angle sweep, Style s);
 void draw_sector(Point p, int32_t d, Angle start, Angle sweep, Style s);
 void draw_image(Image img, Point p);
