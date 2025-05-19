@@ -13,9 +13,6 @@
 /// @brief Mark an "update" callback function.
 #define UPDATE __attribute__((export_name("update")))
 
-/// @brief Mark a "render_line" callback function.
-#define RENDER_LINE __attribute__((export_name("render_line")))
-
 /// @brief Mark a "cheat" callback function.
 #define CHEAT __attribute__((export_name("cheat")))
 
