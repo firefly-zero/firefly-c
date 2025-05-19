@@ -45,6 +45,9 @@ void _ffb_draw_sector(int32_t x, int32_t y, int32_t d, float ast, float asw, int
 WASM_IMPORT("graphics", "draw_text")
 void _ffb_draw_text(uintptr_t textPtr, int32_t textLen, uintptr_t fontPtr, int32_t fontLen, int32_t x, int32_t y, int32_t color);
 
+WASM_IMPORT("graphics", "draw_qr")
+void _ffb_draw_qr(uintptr_t ptr, int32_t len, int32_t x, int32_t y, int32_t black, int32_t white);
+
 WASM_IMPORT("graphics", "draw_image")
 void _ffb_draw_image(uintptr_t ptr, int32_t len, int32_t x, int32_t y);
 
