@@ -91,7 +91,7 @@ WASM_IMPORT("net", "get_peers")
 int32_t _ffb_get_peers();
 
 WASM_IMPORT("net", "save_stash")
-_ffb_save_stash(uintptr_t peerID, uintptr_t bufPtr, uintptr_t bufLen);
+void _ffb_save_stash(uintptr_t peerID, uintptr_t bufPtr, uintptr_t bufLen);
 
 WASM_IMPORT("net", "load_stash")
 int32_t _ffb_load_stash(uintptr_t peerID, uintptr_t bufPtr, uintptr_t bufLen);
