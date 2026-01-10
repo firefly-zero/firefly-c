@@ -42,15 +42,49 @@ AudioTime miliseconds(int32_t s)
     return t;
 }
 
-/// @brief Convert Pad to DPad.
-DPad pad_to_dpad(Pad pad)
+/// @brief Convert Pad to DPad8.
+DPad8 pad_to_dpad8(Pad pad)
 {
-    DPad dpad = {
-        .left = pad.x <= -100,
-        .right = pad.x >= 100,
-        .up = pad.y <= -100,
-        .down = pad.y >= 100};
+    DPad8 dpad = {
+        .left = pad.x <= -300,
+        .right = pad.x >= 300,
+        .up = pad.y <= -300,
+        .down = pad.y >= 300};
     return dpad;
+}
+
+/// @brief Convert Pad to DPad4.
+DPad4 pad_to_dpad4(Pad self)
+{
+    int x = self.x;
+    int y = self.y;
+    int absX = x;
+    if (absX < 0)
+    {
+        absX = -absX;
+    }
+    int absY = y;
+    if (absY < 0)
+    {
+        absY = -absY;
+    }
+    if (y > 300 && y > absX)
+    {
+        return UP;
+    }
+    if (y < -300 && -y > absX)
+    {
+        return DOWN;
+    }
+    if (x > 300 && x > absY)
+    {
+        return RIGHT;
+    }
+    if (x < -300 && -x > absY)
+    {
+        return LEFT;
+    }
+    return NONE;
 }
 
 // -- GRAPHICS -- //

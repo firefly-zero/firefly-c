@@ -179,8 +179,29 @@ struct Pad
 };
 typedef struct Pad Pad;
 
-/// @brief A classic 4-button representation of the Pad.
-struct DPad
+/// @brief 8-directional DPad-like representation of the Pad.
+///
+/// @details Constructed with Pad.toDPad8. Useful for simple games and ports.
+/// The middle of the pad is a "dead zone" pressing which will not activate any direction.
+///
+/// Implements all the same methods as DPad4.
+///
+/// Invariant: it's not possible for opposite directions (left and right, or down and up)
+/// to be active at the same time. However, it's possible for heighboring directions
+/// (like up and right) to be active at the same time if the player presses a diagonal.
+///
+/// For completeness, here is the full list of possible states:
+///
+/// * right
+/// * right and up
+/// * up
+/// * left and up
+/// * left
+/// * left and down
+/// * down
+/// * right and down
+/// * none
+struct DPad8
 {
     /// @brief If the left segment of the Pad is pressed.
     bool left;
@@ -191,7 +212,17 @@ struct DPad
     /// @brief If the lower segment of the Pad is pressed.
     bool down;
 };
-typedef struct DPad DPad;
+typedef struct DPad8 DPad8;
+
+enum DPad4
+{
+    NONE = 0,
+    LEFT = 1,
+    RIGHT = 2,
+    UP = 3,
+    DOWN = 4,
+};
+typedef enum DPad4 DPad4;
 
 /// @brief State of the buttons. True is pressed, false is released.
 struct Buttons
@@ -351,7 +382,8 @@ Angle degrees(float a);
 AudioTime samples(int32_t s);
 AudioTime seconds(int32_t s);
 AudioTime miliseconds(int32_t s);
-DPad pad_to_dpad(Pad pad);
+DPad8 pad_to_dpad8(Pad pad);
+DPad4 pad_to_dpad4(Pad pad);
 
 void clear_screen(Color c);
 void set_color(Color c, RGB v);
