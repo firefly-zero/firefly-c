@@ -356,13 +356,43 @@ uintptr_t get_random()
 
 /// @brief Write device name into the given Buffer.
 /// @details The buffer size must be at least 16 bytes.
-Buffer get_name(Buffer buf)
+Buffer get_name(Peer p, Buffer buf)
 {
-    int32_t size = _ffb_get_name((int)buf.head, buf.size);
+    int32_t size = _ffb_get_name(p, (int)buf.head, buf.size);
     File name = {
         .size = size,
         .head = buf.head};
     return name;
+}
+
+/// @brief Get system settings.
+Settings get_settings(Peer p)
+{
+    int64_t raw = _ffb_get_settings(p);
+    Language language = (Language)(uint16_t)raw;
+    uint8_t flags = (uint8_t)(raw >> 16);
+    uint32_t themeRaw = (uint32_t)(raw >> 32);
+    Theme theme = {
+        .id = (uint8_t)(themeRaw),
+        .primary = _parseColor(themeRaw >> 20),
+        .secondary = _parseColor(themeRaw >> 16),
+        .accent = _parseColor(themeRaw >> 12),
+        .bg = _parseColor(themeRaw >> 8),
+    };
+    Settings settings = {
+        .theme = theme,
+        .language = language,
+        .rotate_screen = (flags & 0b0001) != 0,
+        .reduce_flashing = (flags & 0b0010) != 0,
+        .contrast = (flags & 0b0100) != 0,
+        .easter_eggs = (flags & 0b1000) != 0,
+    };
+    return settings;
+}
+
+Color _parseColor(uint32_t c)
+{
+    return (Color)(c & 0xf + 1);
 }
 
 /// @brief Ask the runtime to restart the app after the current update iteration.

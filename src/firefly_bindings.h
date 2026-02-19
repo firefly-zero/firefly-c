@@ -91,18 +91,18 @@ WASM_IMPORT("net", "get_peers")
 int32_t _ffb_get_peers();
 
 WASM_IMPORT("net", "save_stash")
-void _ffb_save_stash(uintptr_t peerID, uintptr_t bufPtr, uintptr_t bufLen);
+void _ffb_save_stash(int32_t peerID, uintptr_t bufPtr, uintptr_t bufLen);
 
 WASM_IMPORT("net", "load_stash")
-int32_t _ffb_load_stash(uintptr_t peerID, uintptr_t bufPtr, uintptr_t bufLen);
+int32_t _ffb_load_stash(int32_t peerID, uintptr_t bufPtr, uintptr_t bufLen);
 
 // -- STATS -- //
 
 WASM_IMPORT("misc", "add_progress")
-uintptr_t _ffb_add_progress(uintptr_t peerID, uintptr_t badgeID, int32_t val);
+uintptr_t _ffb_add_progress(int32_t peerID, uintptr_t badgeID, int32_t val);
 
 WASM_IMPORT("misc", "add_score")
-int32_t _ffb_add_score(uintptr_t peerID, uintptr_t badgeID, int32_t val);
+int32_t _ffb_add_score(int32_t peerID, uintptr_t badgeID, int32_t val);
 
 // -- MISC -- //
 
@@ -119,7 +119,10 @@ WASM_IMPORT("misc", "get_random")
 uintptr_t _ffb_get_random();
 
 WASM_IMPORT("misc", "get_name")
-uintptr_t _ffb_get_name(uintptr_t ptr, uintptr_t len);
+uintptr_t _ffb_get_name(int32_t peerID, uintptr_t ptr, uintptr_t len);
+
+WASM_IMPORT("misc", "get_settings")
+uint64_t _ffb_get_settings(int32_t peerID);
 
 WASM_IMPORT("misc", "restart")
 void _ffb_restart();

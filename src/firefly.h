@@ -273,6 +273,86 @@ struct Progress
 };
 typedef struct Progress Progress;
 
+// -- MISC -- //
+
+/// @brief User interface language.
+enum Language
+{
+    /// @brief en 🇬🇧 💂
+    English,
+    /// @brief nl 🇳🇱 🧀
+    Dutch,
+    /// @brief fr 🇫🇷 🥐
+    French,
+    /// @brief de 🇩🇪 🥨
+    German,
+    /// @brief it 🇮🇹 🍕
+    Italian,
+    /// @brief pl 🇵🇱 🥟
+    Polish,
+    /// @brief ro 🇷🇴 🧛
+    Romanian,
+    /// @brief ru 🇷🇺 🪆
+    Russian,
+    /// @brief es 🇪🇸 🐂
+    Spanish,
+    /// @brief sv 🇸🇪 ❄️
+    Swedish,
+    /// @brief tr 🇹🇷 🕌
+    Turkish,
+    /// @brief uk 🇺🇦 ✊
+    Ukrainian,
+    /// @brief tp 🇨🇦 🙂
+    TokiPona,
+};
+typedef enum Language Language;
+
+/// @brief User preferred color scheme.
+struct Theme
+{
+    uint8_t id;
+    /// @brief The main color of text and boxes.
+    Color primary;
+    /// @brief The color of disable options, muted text, etc.
+    Color secondary;
+    /// @brief The color of important elements, active options, etc.
+    Color accent;
+    /// @brief The background color, the most contrast color to primary.
+    Color bg;
+};
+typedef struct Theme Theme;
+
+/// @brief System settings.
+struct Settings
+{
+    /// @brief The preferred color scheme of the player.
+    Theme theme;
+
+    /// @brief The configured interface language.
+    Language language;
+
+    /// @brief If true, the screen is rotated 180 degrees.
+    ///
+    /// @details In other words, the player holds the device upside-down.
+    /// The touchpad is now on the right and the buttons are on the left.
+    bool rotate_screen;
+
+    /// @brief The player has photosensitivity. The app should avoid any rapid flashes.
+    bool reduce_flashing;
+
+    /// @brief The player wants increased contrast for colors.
+    ///
+    /// @details If set, the black and white colors in the default
+    /// palette are adjusted automatically. All other colors
+    /// in the default palette or all colors in a custom palette
+    /// should be adjusted by the app.
+    bool contrast;
+
+    /// @brief If true, the player wants to see easter eggs, holiday effects, and weird jokes.
+    bool easter_eggs;
+};
+typedef struct Settings Settings;
+
 // -- AUDIO -- //
 
 /// @brief The sample rate of the audio engine.
@@ -421,7 +501,8 @@ void log_debug(char *msg);
 void log_error(char *msg);
 void set_seed(uintptr_t seed);
 uintptr_t get_random();
-Buffer get_name(Buffer buf);
+Buffer get_name(Peer p, Buffer buf);
+Settings get_settings(Peer p);
 void restart();
 void quit();
 
