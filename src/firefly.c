@@ -46,10 +46,10 @@ AudioTime miliseconds(int32_t s)
 DPad8 pad_to_dpad8(Pad pad)
 {
     DPad8 dpad = {
-        .left = pad.x <= -300,
-        .right = pad.x >= 300,
-        .up = pad.y <= -300,
-        .down = pad.y >= 300};
+        .left = pad.x <= -400,
+        .right = pad.x >= 400,
+        .up = pad.y <= -400,
+        .down = pad.y >= 400};
     return dpad;
 }
 
