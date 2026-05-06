@@ -216,11 +216,11 @@ typedef struct DPad8 DPad8;
 
 enum DPad4
 {
-    NONE = 0,
-    LEFT = 1,
-    RIGHT = 2,
-    UP = 3,
-    DOWN = 4,
+    DPAD4_NONE = 0,
+    DPAD4_LEFT = 1,
+    DPAD4_RIGHT = 2,
+    DPAD4_UP = 3,
+    DPAD4_DOWN = 4,
 };
 typedef enum DPad4 DPad4;
 

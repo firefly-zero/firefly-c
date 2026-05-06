@@ -70,21 +70,21 @@ DPad4 pad_to_dpad4(Pad self)
     }
     if (y > 300 && y > absX)
     {
-        return UP;
+        return DPAD4_UP;
     }
     if (y < -300 && -y > absX)
     {
-        return DOWN;
+        return DPAD4_DOWN;
     }
     if (x > 300 && x > absY)
     {
-        return RIGHT;
+        return DPAD4_RIGHT;
     }
     if (x < -300 && -x > absY)
     {
-        return LEFT;
+        return DPAD4_LEFT;
     }
-    return NONE;
+    return DPAD4_NONE;
 }
 
 // -- GRAPHICS -- //
@@ -365,6 +365,11 @@ Buffer get_name(Peer p, Buffer buf)
     return name;
 }
 
+Color _parseColor(uint32_t c)
+{
+    return (Color)(c & 0xf + 1);
+}
+
 /// @brief Get system settings.
 Settings get_settings(Peer p)
 {
@@ -388,11 +393,6 @@ Settings get_settings(Peer p)
         .easter_eggs = (flags & 0b1000) != 0,
     };
     return settings;
-}
-
-Color _parseColor(uint32_t c)
-{
-    return (Color)(c & 0xf + 1);
 }
 
 /// @brief Ask the runtime to restart the app after the current update iteration.
