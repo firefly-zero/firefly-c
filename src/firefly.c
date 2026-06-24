@@ -672,8 +672,30 @@ void mod_hold(AudioNode node, float low, float high, HoldModulator mod)
     _ffba_mod_hold(node.id, 0, low, high, mod.time.samples);
 }
 
+/// @brief Modulate an audio node's main parameter using AdsrModulator.
+void mod_adsr(AudioNode node, float low, float high, AdsrModulator mod)
+{
+    _ffba_mod_adsr(
+        node.id, 0, low, high,
+        mod.attack.samples, mod.decay.samples,
+        mod.sustain.samples, mod.sustain_level,
+        mod.release.samples);
+}
+
 /// @brief Modulate an audio node's main parameter using SineModulator.
 void mod_sine(AudioNode node, float low, float high, SineModulator mod)
 {
     _ffba_mod_sine(node.id, 0, mod.freq, low, high);
+}
+
+/// @brief Modulate an audio node's main parameter using SquareModulator.
+void mod_square(AudioNode node, float low, float high, SquareModulator mod)
+{
+    _ffba_mod_square(node.id, 0, low, high, mod.period.samples);
+}
+
+/// @brief Modulate an audio node's main parameter using SawtoothModulator.
+void mod_sawtooth(AudioNode node, float low, float high, SawtoothModulator mod)
+{
+    _ffba_mod_sawtooth(node.id, 0, low, high, mod.period.samples);
 }

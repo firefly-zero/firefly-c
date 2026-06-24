@@ -384,8 +384,8 @@ typedef struct AudioTime AudioTime;
 ///
 /// @details It looks like this: `⎽╱⎺` or `⎺╲⎽`.
 ///
-/// The value before `start_at` is `start`, the value after `end_at` is `end`,
-/// and the value between `start_at` and `end_at` changes linearly from `start` to `end`.
+/// The value before `start_at` is 0, the value after `end_at` is 1,
+/// and the value between `start_at` and `end_at` changes linearly from 0 to 1.
 struct LinearModulator
 {
     AudioTime start_at;
@@ -397,7 +397,7 @@ typedef struct LinearModulator LinearModulator;
 ///
 /// @details It looks like this: `⎽│⎺` or `⎺│⎽`.
 ///
-/// The value before `time` is `before` and the value after `time` is `after`.
+/// The value before `time` is 0 and the value after `time` is 1.
 /// Equivalent to LinearModulator with `start_at` being equal to `end_at`.
 struct HoldModulator
 {
@@ -405,16 +405,53 @@ struct HoldModulator
 };
 typedef struct HoldModulator HoldModulator;
 
+/// @brief ADSR envelope.
+///
+/// @details It looks like this: `🭋🭍🬹🬿`
+///
+///  1. Until `attack`, the value goes from 0 to 1;
+///  2. Until `decay`, it goes from 1 to `sustain_level`;
+///  3. Until `sustain`, it holds `sustain_level`;
+///  4. Until `release`, it goes from `sustain_level` to 0;
+///  5. After `release`, it holds 0.
+///
+/// Most commonly used with gain.
+struct AdsrModulator
+{
+    AudioTime attack;
+    AudioTime decay;
+    AudioTime sustain;
+    float sustain_level;
+    AudioTime release;
+};
+typedef struct AdsrModulator AdsrModulator;
+
 /// @brief Sine wave low-frequency oscillator.
 ///
 /// @details It looks like this: `∿`.
-///
-/// `low` is the lowest produced value, `high` is the highest.
 struct SineModulator
 {
     float freq;
 };
 typedef struct SineModulator SineModulator;
+
+/// @brief Square wave low-frequency oscillator.
+///
+/// @details It looks like this: `🭿🭾🭿🭾🭿🭾🭿🭾`.
+struct SquareModulator
+{
+    AudioTime period;
+};
+typedef struct SquareModulator SquareModulator;
+
+/// @brief Sawtooth wave low-frequency oscillator.
+///
+/// @details It looks like this: `╱│╱│╱│╱│`.
+struct SawtoothModulator
+{
+    AudioTime period;
+};
+typedef struct SawtoothModulator SawtoothModulator;
 
 // -- FUNCTIONS -- //
 
@@ -498,7 +535,10 @@ AudioNode add_clip(AudioNode parent, float low, float high);
 
 void mod_linear(AudioNode node, float low, float high, LinearModulator mod);
 void mod_hold(AudioNode node, float low, float high, HoldModulator mod);
+void mod_adsr(AudioNode node, float low, float high, AdsrModulator mod);
 void mod_sine(AudioNode node, float low, float high, SineModulator mod);
+void mod_square(AudioNode node, float low, float high, SquareModulator mod);
+void mod_sawtooth(AudioNode node, float low, float high, SawtoothModulator mod);
 
 void audio_reset(AudioNode node);
 void audio_reset_all(AudioNode node);

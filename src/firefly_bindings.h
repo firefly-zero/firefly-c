@@ -213,8 +213,21 @@ void _ffba_mod_linear(uint32_t nodeID, uint32_t param, float x_start, float x_en
 WASM_IMPORT("audio", "mod_hold")
 void _ffba_mod_hold(uint32_t nodeID, uint32_t param, float before, float after, uint32_t time);
 
+WASM_IMPORT("audio", "mod_adsr")
+void _ffba_mod_adsr(
+    uint32_t nodeID, uint32_t param, float low, float high,
+    uint32_t attack, uint32_t decay, uint32_t sustain, float sustain_level, uint32_t release);
+
 WASM_IMPORT("audio", "mod_sine")
 void _ffba_mod_sine(uint32_t nodeID, uint32_t param, float freq, float low, float high);
+
+WASM_IMPORT("audio", "mod_square")
+void _ffba_mod_square(uint32_t nodeID, uint32_t param, float low, float high, uint32_t period);
+
+WASM_IMPORT("audio", "mod_sawtooth")
+void _ffba_mod_sawtooth(uint32_t nodeID, uint32_t param, float low, float high, uint32_t period);
+
+// actions on audio nodes
 
 WASM_IMPORT("audio", "reset")
 void _ffba_reset(uint32_t nodeID);
