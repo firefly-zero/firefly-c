@@ -388,8 +388,6 @@ typedef struct AudioTime AudioTime;
 /// and the value between `start_at` and `end_at` changes linearly from `start` to `end`.
 struct LinearModulator
 {
-    float start;
-    float end;
     AudioTime start_at;
     AudioTime end_at;
 };
@@ -403,8 +401,6 @@ typedef struct LinearModulator LinearModulator;
 /// Equivalent to LinearModulator with `start_at` being equal to `end_at`.
 struct HoldModulator
 {
-    float before;
-    float after;
     AudioTime time;
 };
 typedef struct HoldModulator HoldModulator;
@@ -417,8 +413,6 @@ typedef struct HoldModulator HoldModulator;
 struct SineModulator
 {
     float freq;
-    float low;
-    float high;
 };
 typedef struct SineModulator SineModulator;
 
@@ -502,9 +496,9 @@ AudioNode add_take_right(AudioNode parent);
 AudioNode add_swap(AudioNode parent);
 AudioNode add_clip(AudioNode parent, float low, float high);
 
-void mod_linear(AudioNode node, LinearModulator mod);
-void mod_hold(AudioNode node, HoldModulator mod);
-void mod_sine(AudioNode node, SineModulator mod);
+void mod_linear(AudioNode node, float low, float high, LinearModulator mod);
+void mod_hold(AudioNode node, float low, float high, HoldModulator mod);
+void mod_sine(AudioNode node, float low, float high, SineModulator mod);
 
 void audio_reset(AudioNode node);
 void audio_reset_all(AudioNode node);
