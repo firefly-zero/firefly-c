@@ -372,42 +372,6 @@ typedef struct AudioNode AudioNode;
 /// @brief The root audio node. Its child nodes are mixed and played on the device output.
 const AudioNode OUT = {.id = 0};
 
-/// @brief A parameter of an audio node that can be modulated.
-enum ModParam
-{
-    /// @brief Modulate oscillation frequency for a Sine wave node.
-    Sine = 0,
-    /// @brief Modulate oscillation frequency for a Square wave node.
-    Square = 0,
-    /// @brief Modulate oscillation frequency for a Sawtooth wave node.
-    Sawtooth = 0,
-    /// @brief Modulate oscillation frequency for a Triangle wave node.
-    Triangle = 0,
-    /// @brief Modulate the gain level for a Gain node.
-    Gain = 0,
-    /// @brief Modulate the pan value for a Pan node.
-    /// @details The value is from 0. to 1.: 0. is only left, 1. is only right.
-    Pan = 0,
-    /// @brief Modulate the muted state for a Mute node.
-    /// @details Below 0.5 is muted, above is unmuted.
-    Mute = 0,
-    /// @brief Modulate the paused state for a Pause node.
-    /// @details Below 0.5 is paused, above is playing.
-    Pause = 0,
-    /// @brief Modulate the cut-off frequency of a LowPass node.
-    LowPass = 0,
-    /// @brief Modulate the cut-off frequency of a HighPass node.
-    HighPass = 0,
-    /// @brief Modulate the low cut amplitude of a Clip node and adjust the high amplitude to keep the gap.
-    /// @details In other words, the difference between low and high cut points will stay the same.
-    ClipBoth = 0,
-    /// @brief Modulate the low cut amplitude of a Clip node.
-    ClipLow = 1,
-    /// @brief Modulate the high cut amplitude of a Clip node.
-    ClipHigh = 2,
-};
-typedef enum ModParam ModParam;
-
 /// @brief A time or duration used by audio modulators.
 /// @details Must be constructed using samples(x), seconds(x), or miliseconds(x).
 struct AudioTime
@@ -538,9 +502,9 @@ AudioNode add_take_right(AudioNode parent);
 AudioNode add_swap(AudioNode parent);
 AudioNode add_clip(AudioNode parent, float low, float high);
 
-void mod_linear(AudioNode node, ModParam param, LinearModulator mod);
-void mod_hold(AudioNode node, ModParam param, HoldModulator mod);
-void mod_sine(AudioNode node, ModParam param, SineModulator mod);
+void mod_linear(AudioNode node, LinearModulator mod);
+void mod_hold(AudioNode node, HoldModulator mod);
+void mod_sine(AudioNode node, SineModulator mod);
 
 void audio_reset(AudioNode node);
 void audio_reset_all(AudioNode node);

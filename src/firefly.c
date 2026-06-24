@@ -654,20 +654,20 @@ void audio_clear(AudioNode node)
     _ffba_clear(node.id);
 }
 
-/// @brief Modulate an audio node's parameter using a LinearModulator.
-void mod_linear(AudioNode node, ModParam param, LinearModulator mod)
+/// @brief Modulate an audio node's main parameter using LinearModulator.
+void mod_linear(AudioNode node, LinearModulator mod)
 {
-    _ffba_mod_linear(node.id, param, mod.start, mod.end, mod.start_at.samples, mod.end_at.samples);
+    _ffba_mod_linear(node.id, 0, mod.start, mod.end, mod.start_at.samples, mod.end_at.samples);
 }
 
-/// @brief Modulate an audio node's parameter using a HoldModulator.
-void mod_hold(AudioNode node, ModParam param, HoldModulator mod)
+/// @brief Modulate an audio node's main parameter using HoldModulator.
+void mod_hold(AudioNode node, HoldModulator mod)
 {
-    _ffba_mod_hold(node.id, param, mod.before, mod.after, mod.time.samples);
+    _ffba_mod_hold(node.id, 0, mod.before, mod.after, mod.time.samples);
 }
 
-/// @brief Modulate an audio node's parameter using a SineModulator.
-void mod_sine(AudioNode node, ModParam param, SineModulator mod)
+/// @brief Modulate an audio node's main parameter using SineModulator.
+void mod_sine(AudioNode node, SineModulator mod)
 {
-    _ffba_mod_sine(node.id, param, mod.freq, mod.low, mod.high);
+    _ffba_mod_sine(node.id, 0, mod.freq, mod.low, mod.high);
 }
