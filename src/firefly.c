@@ -654,20 +654,48 @@ void audio_clear(AudioNode node)
     _ffba_clear(node.id);
 }
 
-/// @brief Modulate an audio node's parameter using a LinearModulator.
-void mod_linear(AudioNode node, ModParam param, LinearModulator mod)
+/// @brief Set an audio node's main parameter value.
+void audio_set(AudioNode node, float val)
 {
-    _ffba_mod_linear(node.id, param, mod.start, mod.end, mod.start_at.samples, mod.end_at.samples);
+    _ffba_set(node.id, 0, val);
 }
 
-/// @brief Modulate an audio node's parameter using a HoldModulator.
-void mod_hold(AudioNode node, ModParam param, HoldModulator mod)
+/// @brief Modulate an audio node's main parameter using LinearModulator.
+void mod_linear(AudioNode node, float low, float high, LinearModulator mod)
 {
-    _ffba_mod_hold(node.id, param, mod.before, mod.after, mod.time.samples);
+    _ffba_mod_linear(node.id, 0, low, high, mod.start_at.samples, mod.end_at.samples);
 }
 
-/// @brief Modulate an audio node's parameter using a SineModulator.
-void mod_sine(AudioNode node, ModParam param, SineModulator mod)
+/// @brief Modulate an audio node's main parameter using HoldModulator.
+void mod_hold(AudioNode node, float low, float high, HoldModulator mod)
 {
-    _ffba_mod_sine(node.id, param, mod.freq, mod.low, mod.high);
+    _ffba_mod_hold(node.id, 0, low, high, mod.time.samples);
+}
+
+/// @brief Modulate an audio node's main parameter using AdsrModulator.
+void mod_adsr(AudioNode node, float low, float high, AdsrModulator mod)
+{
+    _ffba_mod_adsr(
+        node.id, 0, low, high,
+        mod.attack.samples, mod.decay.samples,
+        mod.sustain.samples, mod.sustain_level,
+        mod.release.samples);
+}
+
+/// @brief Modulate an audio node's main parameter using SineModulator.
+void mod_sine(AudioNode node, float low, float high, SineModulator mod)
+{
+    _ffba_mod_sine(node.id, 0, mod.freq, low, high);
+}
+
+/// @brief Modulate an audio node's main parameter using SquareModulator.
+void mod_square(AudioNode node, float low, float high, SquareModulator mod)
+{
+    _ffba_mod_square(node.id, 0, low, high, mod.period.samples);
+}
+
+/// @brief Modulate an audio node's main parameter using SawtoothModulator.
+void mod_sawtooth(AudioNode node, float low, float high, SawtoothModulator mod)
+{
+    _ffba_mod_sawtooth(node.id, 0, low, high, mod.period.samples);
 }

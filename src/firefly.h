@@ -372,42 +372,6 @@ typedef struct AudioNode AudioNode;
 /// @brief The root audio node. Its child nodes are mixed and played on the device output.
 const AudioNode OUT = {.id = 0};
 
-/// @brief A parameter of an audio node that can be modulated.
-enum ModParam
-{
-    /// @brief Modulate oscillation frequency for a Sine wave node.
-    Sine = 0,
-    /// @brief Modulate oscillation frequency for a Square wave node.
-    Square = 0,
-    /// @brief Modulate oscillation frequency for a Sawtooth wave node.
-    Sawtooth = 0,
-    /// @brief Modulate oscillation frequency for a Triangle wave node.
-    Triangle = 0,
-    /// @brief Modulate the gain level for a Gain node.
-    Gain = 0,
-    /// @brief Modulate the pan value for a Pan node.
-    /// @details The value is from 0. to 1.: 0. is only left, 1. is only right.
-    Pan = 0,
-    /// @brief Modulate the muted state for a Mute node.
-    /// @details Below 0.5 is muted, above is unmuted.
-    Mute = 0,
-    /// @brief Modulate the paused state for a Pause node.
-    /// @details Below 0.5 is paused, above is playing.
-    Pause = 0,
-    /// @brief Modulate the cut-off frequency of a LowPass node.
-    LowPass = 0,
-    /// @brief Modulate the cut-off frequency of a HighPass node.
-    HighPass = 0,
-    /// @brief Modulate the low cut amplitude of a Clip node and adjust the high amplitude to keep the gap.
-    /// @details In other words, the difference between low and high cut points will stay the same.
-    ClipBoth = 0,
-    /// @brief Modulate the low cut amplitude of a Clip node.
-    ClipLow = 1,
-    /// @brief Modulate the high cut amplitude of a Clip node.
-    ClipHigh = 2,
-};
-typedef enum ModParam ModParam;
-
 /// @brief A time or duration used by audio modulators.
 /// @details Must be constructed using samples(x), seconds(x), or miliseconds(x).
 struct AudioTime
@@ -420,12 +384,10 @@ typedef struct AudioTime AudioTime;
 ///
 /// @details It looks like this: `⎽╱⎺` or `⎺╲⎽`.
 ///
-/// The value before `start_at` is `start`, the value after `end_at` is `end`,
-/// and the value between `start_at` and `end_at` changes linearly from `start` to `end`.
+/// The value before `start_at` is 0, the value after `end_at` is 1,
+/// and the value between `start_at` and `end_at` changes linearly from 0 to 1.
 struct LinearModulator
 {
-    float start;
-    float end;
     AudioTime start_at;
     AudioTime end_at;
 };
@@ -435,28 +397,61 @@ typedef struct LinearModulator LinearModulator;
 ///
 /// @details It looks like this: `⎽│⎺` or `⎺│⎽`.
 ///
-/// The value before `time` is `before` and the value after `time` is `after`.
+/// The value before `time` is 0 and the value after `time` is 1.
 /// Equivalent to LinearModulator with `start_at` being equal to `end_at`.
 struct HoldModulator
 {
-    float before;
-    float after;
     AudioTime time;
 };
 typedef struct HoldModulator HoldModulator;
 
+/// @brief ADSR envelope.
+///
+/// @details It looks like this: `🭋🭍🬹🬿`
+///
+///  1. Until `attack`, the value goes from 0 to 1;
+///  2. Until `decay`, it goes from 1 to `sustain_level`;
+///  3. Until `sustain`, it holds `sustain_level`;
+///  4. Until `release`, it goes from `sustain_level` to 0;
+///  5. After `release`, it holds 0.
+///
+/// Most commonly used with gain.
+struct AdsrModulator
+{
+    AudioTime attack;
+    AudioTime decay;
+    AudioTime sustain;
+    float sustain_level;
+    AudioTime release;
+};
+typedef struct AdsrModulator AdsrModulator;
+
 /// @brief Sine wave low-frequency oscillator.
 ///
 /// @details It looks like this: `∿`.
-///
-/// `low` is the lowest produced value, `high` is the highest.
 struct SineModulator
 {
     float freq;
-    float low;
-    float high;
 };
 typedef struct SineModulator SineModulator;
+
+/// @brief Square wave low-frequency oscillator.
+///
+/// @details It looks like this: `🭿🭾🭿🭾🭿🭾🭿🭾`.
+struct SquareModulator
+{
+    AudioTime period;
+};
+typedef struct SquareModulator SquareModulator;
+
+/// @brief Sawtooth wave low-frequency oscillator.
+///
+/// @details It looks like this: `╱│╱│╱│╱│`.
+struct SawtoothModulator
+{
+    AudioTime period;
+};
+typedef struct SawtoothModulator SawtoothModulator;
 
 // -- FUNCTIONS -- //
 
@@ -538,9 +533,12 @@ AudioNode add_take_right(AudioNode parent);
 AudioNode add_swap(AudioNode parent);
 AudioNode add_clip(AudioNode parent, float low, float high);
 
-void mod_linear(AudioNode node, ModParam param, LinearModulator mod);
-void mod_hold(AudioNode node, ModParam param, HoldModulator mod);
-void mod_sine(AudioNode node, ModParam param, SineModulator mod);
+void mod_linear(AudioNode node, float low, float high, LinearModulator mod);
+void mod_hold(AudioNode node, float low, float high, HoldModulator mod);
+void mod_adsr(AudioNode node, float low, float high, AdsrModulator mod);
+void mod_sine(AudioNode node, float low, float high, SineModulator mod);
+void mod_square(AudioNode node, float low, float high, SquareModulator mod);
+void mod_sawtooth(AudioNode node, float low, float high, SawtoothModulator mod);
 
 void audio_reset(AudioNode node);
 void audio_reset_all(AudioNode node);
