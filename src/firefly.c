@@ -654,6 +654,12 @@ void audio_clear(AudioNode node)
     _ffba_clear(node.id);
 }
 
+/// @brief Set an audio node's main parameter value.
+void audio_set(AudioNode node, float val)
+{
+    _ffba_set(node.id, 0, val);
+}
+
 /// @brief Modulate an audio node's main parameter using LinearModulator.
 void mod_linear(AudioNode node, float low, float high, LinearModulator mod)
 {

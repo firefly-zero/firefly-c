@@ -224,3 +224,6 @@ void _ffba_reset_all(uint32_t nodeID);
 
 WASM_IMPORT("audio", "clear")
 void _ffba_clear(uint32_t nodeID);
+
+WASM_IMPORT("audio", "set")
+void _ffba_set(uint32_t nodeID, uint32_t param, float val);
