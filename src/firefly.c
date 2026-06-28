@@ -176,9 +176,45 @@ void draw_image(Image i, Point p)
 }
 
 /// @brief Draw an image subregion.
-void draw_sub_image(SubImage s, Point p)
+void draw_sub_image(SubImage i, Point p)
 {
-    _ffb_draw_sub_image((int)s.image.head, s.image.size, p.x, p.y, s.point.x, s.point.y, s.size.width, s.size.height);
+    _ffb_draw_sub_image(
+        (int)i.image.head, i.image.size,
+        p.x, p.y,
+        i.point.x, i.point.y,
+        i.size.width, i.size.height);
+}
+
+/// @brief Tile the given screen area with the provided sub-image.
+void draw_sub_tile(SubImage i, Point p, Size s)
+{
+    _ffb_draw_sub_tile(
+        (int)i.image.head, i.image.size,
+        p.x, p.y,
+        s.width, s.height,
+        i.point.x, i.point.y,
+        i.size.width, i.size.height);
+}
+
+/// @brief Fill the given area with the given 9-slice.
+///
+/// @details A 9-slice is used to tile an area with 9 sub-images: 4 corners,
+/// 4 edges, and 1 middle segment. It is useful for speech bubbles
+/// and other stylish boxes.
+///
+/// The whole image is the 9-slice. The sub-image is the center area of the 9-slice.
+///
+/// If the target area is bigger than the 9-slice segments,
+/// all the segments (except corners) are repeated ("tiled")
+/// without stretching or mirroring.
+void draw_nine_slice(SubImage i, Point p, Size s)
+{
+    _ffb_draw_nine_slice(
+        (int)i.image.head, i.image.size,
+        p.x, p.y,
+        s.width, s.height,
+        i.point.x, i.point.y,
+        i.size.width, i.size.height);
 }
 
 /// @brief Set the target image for all subsequent drawing operations.
