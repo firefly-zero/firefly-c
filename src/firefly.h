@@ -478,6 +478,8 @@ void draw_arc(Point p, int32_t d, Angle start, Angle sweep, Style s);
 void draw_sector(Point p, int32_t d, Angle start, Angle sweep, Style s);
 void draw_image(Image img, Point p);
 void draw_sub_image(SubImage s, Point p);
+void draw_sub_tile(SubImage i, Point p, Size s);
+void draw_nine_slice(SubImage i, Point p, Size s);
 void set_canvas(Canvas c);
 void unset_canvas();
 
@@ -506,8 +508,8 @@ void quit();
 
 Progress add_progress(Peer p, Badge b, int16_t v);
 Progress get_progress(Peer p, Badge b);
-Score add_score(Peer p, Badge b, Score v);
-Score get_score(Peer p, Badge b);
+Score add_score(Peer p, Board b, Score v);
+Score get_score(Peer p, Board b);
 
 AudioNode add_sine(AudioNode parent, float freq, float phase);
 AudioNode add_square(AudioNode parent, float freq, float phase);

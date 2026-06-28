@@ -54,6 +54,12 @@ void _ffb_draw_image(uintptr_t ptr, int32_t len, int32_t x, int32_t y);
 WASM_IMPORT("graphics", "draw_sub_image")
 void _ffb_draw_sub_image(uintptr_t ptr, uintptr_t len, int32_t x, int32_t y, int32_t subX, int32_t subY, int32_t subWidth, int32_t subHeight);
 
+WASM_IMPORT("graphics", "draw_sub_tile")
+void _ffb_draw_sub_tile(uintptr_t ptr, uintptr_t len, int32_t x, int32_t y, int32_t w, int32_t h, int32_t subX, int32_t subY, int32_t subWidth, int32_t subHeight);
+
+WASM_IMPORT("graphics", "draw_sub_tile")
+void _ffb_draw_nine_slice(uintptr_t ptr, uintptr_t len, int32_t x, int32_t y, int32_t w, int32_t h, int32_t subX, int32_t subY, int32_t subWidth, int32_t subHeight);
+
 WASM_IMPORT("graphics", "set_canvas")
 void _ffb_set_canvas(uintptr_t ptr, uintptr_t len);
 
