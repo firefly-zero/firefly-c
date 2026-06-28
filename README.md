@@ -5,6 +5,7 @@ The C/C++ SDK for making [Firefly Zero](https://fireflyzero.com/) games.
 Missed API: canvas, audio modulation, state.
 
 * [▶️ getting started](https://docs.fireflyzero.com/dev/getting-started/)
+* [📄 API reference](https://c.fireflyzero.com/)
 * [🐙 github](https://github.com/firefly-zero/firefly-go)
 
 ## Installation
