@@ -390,6 +390,14 @@ uintptr_t get_random()
     return _ffb_get_random();
 }
 
+/// @brief Get the time passed since the app was started.
+Duration get_time()
+{
+    uint64_t us = _ffb_get_time();
+    Duration d = {.us = us};
+    return d;
+}
+
 /// @brief Write device name into the given Buffer.
 /// @details The buffer size must be at least 16 bytes.
 Buffer get_name(Peer p, Buffer buf)

@@ -356,6 +356,13 @@ struct Settings
 };
 typedef struct Settings Settings;
 
+struct Duration
+{
+    /// @brief Microseconds.
+    uint64_t us;
+};
+typedef struct Duration Duration;
+
 // -- AUDIO -- //
 
 /// @brief The sample rate of the audio engine.
@@ -501,6 +508,7 @@ void log_debug(char *msg);
 void log_error(char *msg);
 void set_seed(uintptr_t seed);
 uintptr_t get_random();
+Duration get_time();
 Buffer get_name(Peer p, Buffer buf);
 Settings get_settings(Peer p);
 void restart();
