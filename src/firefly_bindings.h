@@ -124,6 +124,9 @@ void _ffb_set_seed(uintptr_t seed);
 WASM_IMPORT("misc", "get_random")
 uintptr_t _ffb_get_random();
 
+WASM_IMPORT("misc", "get_time")
+uint64_t _ffb_get_time();
+
 WASM_IMPORT("misc", "get_name")
 uintptr_t _ffb_get_name(int32_t peerID, uintptr_t ptr, uintptr_t len);
 
