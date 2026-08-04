@@ -504,6 +504,10 @@ bool is_online(Peers peers, Peer peer);
 void save_stash(Peer p, Stash s);
 Stash load_stash(Peer p, Buffer s);
 
+void add_menu_item(uint8_t index, char *text);
+void remove_menu_item(uint8_t index);
+void open_menu();
+
 void log_debug(char *msg);
 void log_error(char *msg);
 void set_seed(uintptr_t seed);

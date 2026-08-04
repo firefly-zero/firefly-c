@@ -362,6 +362,34 @@ Stash load_stash(Peer p, Buffer s)
     return res;
 }
 
+// -- MENU -- //
+
+/// @brief Add a custom item on the app menu.
+///
+/// @details The index is the value passed into the `handle_menu` callback
+/// when the menu item is selected by the user.
+/// Its value doesn't have to be unique or continious.
+void add_menu_item(uint8_t index, char *text)
+{
+    size_t textLen = strlen(text);
+    _ffb_add_menu_item(index, (int)text, textLen);
+}
+
+/// @brief Remove a custom menu item with the given index.
+void remove_menu_item(uint8_t index)
+{
+    _ffb_remove_menu_item(index);
+}
+
+/// @brief Open the app menu.
+///
+/// @details It will be opened before the next update.
+/// The current update and then render will proceed as planned.
+void open_menu()
+{
+    _ffb_open_menu();
+}
+
 // -- MISC -- //
 
 /// @brief Write a debug message.

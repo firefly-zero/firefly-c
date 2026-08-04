@@ -110,6 +110,17 @@ uintptr_t _ffb_add_progress(int32_t peerID, uintptr_t badgeID, int32_t val);
 WASM_IMPORT("misc", "add_score")
 int32_t _ffb_add_score(int32_t peerID, uintptr_t badgeID, int32_t val);
 
+// -- MENU -- //
+
+WASM_IMPORT("misc", "add_menu_item")
+void _ffb_add_menu_item(uintptr_t index, uintptr_t ptr, uintptr_t len);
+
+WASM_IMPORT("misc", "remove_menu_item")
+void _ffb_remove_menu_item(uintptr_t index);
+
+WASM_IMPORT("misc", "open_menu")
+void _ffb_open_menu();
+
 // -- MISC -- //
 
 WASM_IMPORT("misc", "log_debug")
