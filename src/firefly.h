@@ -359,7 +359,7 @@ typedef struct Settings Settings;
 struct Duration
 {
     /// @brief Microseconds.
-    uint64_t us;
+    int64_t us;
 };
 typedef struct Duration Duration;
 
