@@ -234,7 +234,7 @@ void draw_nine_slice(SubImage i, Point p, Size s)
 }
 
 /// @brief Set the target image for all subsequent drawing operations.
-void set_canvas(Canvas c)
+void set_canvas(Image c)
 {
     _ffb_set_canvas((int)c.head, c.size);
 }

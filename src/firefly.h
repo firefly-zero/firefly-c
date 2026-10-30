@@ -154,7 +154,6 @@ struct Buffer
 typedef struct Buffer Buffer;
 typedef struct Buffer File;
 typedef struct Buffer Image;
-typedef struct Buffer Canvas;
 typedef struct Buffer Stash;
 typedef struct Buffer Font;
 
@@ -489,7 +488,7 @@ void draw_image(Image img, Point p);
 void draw_sub_image(SubImage s, Point p);
 void draw_sub_tile(SubImage i, Point p, Size s);
 void draw_nine_slice(SubImage i, Point p, Size s);
-void set_canvas(Canvas c);
+void set_canvas(Image c);
 void unset_canvas();
 
 Pad read_pad(Peer peer);
