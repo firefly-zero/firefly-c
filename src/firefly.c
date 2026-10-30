@@ -95,6 +95,22 @@ void clear_screen(Color c)
     _ffb_clear_screen(c);
 }
 
+/// @brief Horizontally flip the image currently rendered on the screen.
+///
+/// @details Most commonly used together with set_canvas to flip images (sprites).
+void flip_x()
+{
+    _ffb_flip_x();
+}
+
+/// @brief Vertically flip the image currently rendered on the screen.
+///
+/// @details Most commonly used together with set_canvas to flip images (sprites).
+void flip_y()
+{
+    _ffb_flip_y();
+}
+
 /// @brief Set a color value in the palette.
 void set_color(Color c, RGB v)
 {

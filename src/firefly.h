@@ -471,6 +471,8 @@ DPad8 pad_to_dpad8(Pad pad);
 DPad4 pad_to_dpad4(Pad pad);
 
 void clear_screen(Color c);
+void flip_x();
+void flip_y();
 void set_color(Color c, RGB v);
 void draw_point(Point p, Color c);
 void draw_line(Point a, Point b, LineStyle s);

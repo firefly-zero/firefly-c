@@ -12,6 +12,12 @@
 WASM_IMPORT("graphics", "clear_screen")
 void _ffb_clear_screen(int32_t c);
 
+WASM_IMPORT("graphics", "flip_x")
+void _ffb_flip_x();
+
+WASM_IMPORT("graphics", "flip_y")
+void _ffb_flip_y();
+
 WASM_IMPORT("graphics", "set_color")
 void _ffb_set_color(int32_t c, int32_t r, int32_t g, int32_t b);
 
