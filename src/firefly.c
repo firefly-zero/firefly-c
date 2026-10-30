@@ -668,6 +668,21 @@ AudioNode add_pause(AudioNode parent)
     return node;
 }
 
+/// @brief Add node that plays child nodes only on the device of the given peer.
+AudioNode add_peer(AudioNode parent, Peer p)
+{
+    AudioNode node;
+    if (p == get_me())
+    {
+        node.id = _ffba_add_mix(parent.id);
+    }
+    else
+    {
+        node.id = _ffba_add_zero(parent.id);
+    }
+    return node;
+}
+
 /// @brief Add trackposition AudioNode as a child node for the given node.
 AudioNode add_track_position(AudioNode parent)
 {
